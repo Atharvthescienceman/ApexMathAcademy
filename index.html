@@ -110,6 +110,7 @@
             cursor: pointer;
             text-decoration: none;
             transition: background 0.2s;
+            display: inline-block;
         }
 
         .cta-btn:hover {
@@ -440,16 +441,19 @@
         <h2 class="section-title">Secure Your Seat at Apex</h2>
         <p style="text-align:center; margin-bottom: 2rem;">Fill out this simple form, and we will contact you within 24 hours to finalize your student's schedule.</p>
         
-       <form action="https://formspree.io/f/meeygjek" method="POST">
+        <!-- FORMSPREE LINK CONNECTED -->
+        <form action="https://formspree.io/f/meeygjek" method="POST">
             <div class="form-group">
                 <label for="parent-name">Parent / Guardian Name</label>
-                <input type="text" id="parent-name" required placeholder="John Doe">
+                <!-- FIXED: Added name="Parent Name" -->
+                <input type="text" id="parent-name" name="Parent Name" required placeholder="John Doe">
             </div>
             
             <!-- TUTOR SELECTION WITH INTERACTIVE POPUP BIO -->
             <div class="form-group">
                 <label for="tutor-select">Select Your Instructor</label>
-                <select id="tutor-select" onchange="toggleTutorBio(this.value)" required>
+                <!-- FIXED: Added name="Selected Tutor" -->
+                <select id="tutor-select" name="Selected Tutor" onchange="toggleTutorBio(this.value)" required>
                     <option value="">-- Click to Choose a Tutor --</option>
                     <option value="atharv">Atharv Gupta (Founder & Core Instructor)</option>
                 </select>
@@ -465,7 +469,8 @@
 
             <div class="form-group">
                 <label for="student-grade">Student's Current Grade Level</label>
-                <select id="student-grade">
+                <!-- FIXED: Added name="Student Grade Level" -->
+                <select id="student-grade" name="Student Grade Level">
                     <option>Middle School (Grades 6-8)</option>
                     <option>High School Freshman (Grade 9)</option>
                     <option>Other / Elementary</option>
@@ -473,7 +478,8 @@
             </div>
             <div class="form-group">
                 <label for="package-choice">Desired Academic Package</label>
-                <select id="package-choice">
+                <!-- FIXED: Added name="Selected Plan Package" -->
+                <select id="package-choice" name="Selected Plan Package">
                     <option>Drop-In Flex ($12/class)</option>
                     <option>Summer Booster ($10/class - MOST POPULAR)</option>
                     <option>The Grand Elite ($309.99/season - BEST VALUE UNLIMITED)</option>
@@ -481,7 +487,8 @@
             </div>
             <div class="form-group">
                 <label for="notes">Specific Math Areas Needing Help (Optional)</label>
-                <textarea id="notes" rows="4" placeholder="Algebra, Geometry, test prep, etc."></textarea>
+                <!-- FIXED: Added name="Parent Message Notes" -->
+                <textarea id="notes" name="Parent Message Notes" rows="4" placeholder="Algebra, Geometry, test prep, etc."></textarea>
             </div>
             <button type="submit" class="cta-btn" style="width:100%;">Submit Registration Request</button>
         </form>
