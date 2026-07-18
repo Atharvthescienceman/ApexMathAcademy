@@ -1,2 +1,419 @@
 # ApexMathAcademy
 This tutoring buisnness helps children of all ages expand theeir acedmic growth
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Math Academy | Neighborhood Tutoring</title>
+    <style>
+        /* Modern Design Framework */
+        :root {
+            --primary: #1e3a8a; /* Deep professional blue */
+            --secondary: #0d9488; /* Teal accent */
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --white: #ffffff;
+            --accent: #f59e0b; /* Amber highlight for Grand Elite value */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--secondary);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: var(--white);
+            padding: 6rem 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .cta-btn:hover {
+            background-color: #0f766e;
+        }
+
+        /* Content Tab Structure */
+        .tab-content {
+            display: none;
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Layout Utilities */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+        }
+
+        /* Responsive Image Styling */
+        .real-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Packages Cards Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            text-align: center;
+            border-top: 5px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* HIGHLIGHT THE MIDDLE ONE (MOST POPULAR) */
+        .card.popular {
+            border-top-color: var(--secondary);
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* PREMIUM STYLING FOR THE GRAND ELITE BEST VALUE */
+        .card.elite-value {
+            border-top-color: var(--accent);
+            background: linear-gradient(to bottom, #ffffff, #fffdf5);
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.15);
+            border: 2px solid #fde68a;
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 1.5rem 0;
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .savings-badge {
+            background: #fef3c7;
+            color: #b45309;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            border: 1px solid #fde68a;
+        }
+
+        /* Professional Form styling */
+        form {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Professional Navigation Grid Tabs -->
+    <nav>
+        <div class="logo">📐 Apex Math Academy</div>
+        <ul class="nav-links">
+            <li><a onclick="switchTab('home')" id="tab-home" class="active">Home</a></li>
+            <li><a onclick="switchTab('about')" id="tab-about">About</a></li>
+            <li><a onclick="switchTab('packages')" id="tab-packages">Packages</a></li>
+            <li><a onclick="switchTab('contact')" id="tab-contact">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Interactive Hero Section -->
+    <header class="hero">
+        <h1>Apex Math Academy</h1>
+        <p>Climb Higher. Count on Success.</p>
+        <button class="cta-btn" onclick="switchTab('packages')">View Classes & Pricing</button>
+    </header>
+
+    <!-- TAB 1: HOME -->
+    <section id="home" class="tab-content active">
+        <div class="grid-2">
+            <div>
+                <h2>Premium Local Math Tutoring</h2>
+                <p style="margin: 1.5rem 0;">Welcome to Apex Math Academy, where neighborhood students unlock their true academic potential. We specialize in transforming math stress into structural understanding, confidence, and top-tier school results.</p>
+                <p>From essential homework support to advanced summer prep routines, our flexible paths fit perfectly into your family's schedule.</p>
+            </div>
+            <!-- REAL IMAGE FOR HOME PAGE -->
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8M3x8c3R1ZHlpbmclMjBtYXRolGVufDB8fHx8MTY3ODg5NTg5OA&ixlib=rb-4.0.3&q=80&w=800" alt="Student happily writing math notes" class="real-img">
+        </div>
+    </section>
+
+    <!-- TAB 2: ABOUT -->
+    <section id="about" class="tab-content">
+        <h2 class="section-title">Why Choose Apex?</h2>
+        <div class="grid-2">
+            <!-- REAL IMAGE FOR ABOUT PAGE -->
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8dHV0b3Jpbmd8ZW58MHx8fHwxNjc4ODk1ODk4&ixlib=rb-4.0.3&q=80&w=800" alt="Friendly math explanation on a tablet" class="real-img">
+            <div>
+                <h3>Our Vision & Approach</h3>
+                <p style="margin: 1rem 0;">We believe that core math mastery shouldn't feel like a chore. By utilizing small-group metrics and intuitive, personalized instruction, we bridge the gap between dry textbook formulas and real conceptual breakthroughs.</p>
+                <ul>
+                    <li><strong>Peer-Level Support:</strong> Highly relatable, focused, and stress-free interaction.</li>
+                    <li><strong>Flexible Frameworks:</strong> Pay-as-you-go sessions or structured summer plans.</li>
+                    <li><strong>Targeted Tracking:</strong> Focused directly on boosting school grade standards.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TAB 3: PACKAGES -->
+    <section id="packages" class="tab-content">
+        <h2 class="section-title">Transparent, Flexible Pricing Plans</h2>
+        <div class="pricing-grid">
+            
+            <!-- Drop-In Flex Plan (LEFT) -->
+            <div class="card">
+                <div>
+                    <h3>Drop-In Flex</h3>
+                    <div class="price-tag">$12<span style="font-size:1.2rem; font-weight:normal; color:#6b7280;"> / session</span></div>
+                    <ul class="features-list">
+                        <li>✓ Perfect for quick homework turn-arounds</li>
+                        <li>✓ Pay entirely as you go</li>
+                        <li>✓ Zero long-term contract structural ties</li>
+                        <li>✓ Comprehensive core lesson plan coverage</li>
+                    </ul>
+                </div>
+                <button class="cta-btn" style="width:100%;" onclick="switchTab('contact')">Choose Flex</button>
+            </div>
+
+            <!-- Summer Booster Plan (MIDDLE - MOST POPULAR) -->
+            <div class="card popular">
+                <div>
+                    <span style="background:var(--secondary); color:white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:bold;">MOST POPULAR</span>
+                    <h3 style="margin-top:0.5rem;">Summer Booster</h3>
+                    <div class="price-tag">$10<span style="font-size:1.2rem; font-weight:normal; color:#6b7280;"> / session</span></div>
+                    <ul class="features-list">
+                        <li>✓ Fixed summer strategy framework</li>
+                        <li>✓ Minimum of 2 mandatory weekly sessions</li>
+                        <li>✓ Reduced rate scaling for unlimited add-on sessions</li>
+                        <li>✓ Keeps logical skills completely sharp over break</li>
+                    </ul>
+                </div>
+                <button class="cta-btn" style="width:100%; background:var(--primary);" onclick="switchTab('contact')">Choose Booster</button>
+            </div>
+
+            <!-- The Grand Elite Plan (RIGHT - BEST VALUE & UNLIMITED SEASON) -->
+            <div class="card elite-value">
+                <div>
+                    <span style="background:var(--accent); color:white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:bold;">BEST VALUE DEAL</span>
+                    <h3 style="margin-top:0.5rem;">The Grand Elite</h3>
+                    <div class="price-tag">$309.99<span style="font-size:1.2rem; font-weight:normal; color:#6b7280;"> / full season</span></div>
+                    
+                    <!-- SAVINGS ANALYSIS BADGE -->
+                    <div class="savings-badge">
+                        💡 Save nearly $300 in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
+                    </div>
+
+                    <ul class="features-list">
+                        <li>★ <strong>Unlimited Classes</strong> all season long</li>
+                        <li>★ One flat fee for the ultimate academic edge</li>
+                        <li>★ Significantly extended class session runtimes</li>
+                        <li>★ 24/7 dedicated digital platform tracking tools</li>
+                        <li>★ Deep-dive diagnostic exam analysis support</li>
+                    </ul>
+                </div>
+                <button class="cta-btn" style="width:100%; background:var(--accent);" onclick="switchTab('contact')">Choose Elite</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TAB 4: CONTACT & SIGN UP -->
+    <section id="contact" class="tab-content">
+        <h2 class="section-title">Secure Your Seat at Apex</h2>
+        <p style="text-align:center; margin-bottom: 2rem;">Fill out this simple form, and we will contact you within 24 hours to finalize your student's schedule.</p>
+        
+        <form onsubmit="alert('Thank you for registering! Apex Academy will be in touch shortly.'); return false;">
+            <div class="form-group">
+                <label for="parent-name">Parent / Guardian Name</label>
+                <input type="text" id="parent-name" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+                <label for="student-grade">Student's Current Grade Level</label>
+                <select id="student-grade">
+                    <option>Middle School (Grades 6-8)</option>
+                    <option>High School Freshman (Grade 9)</option>
+                    <option>Other / Elementary</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="package-choice">Desired Academic Package</label>
+                <select id="package-choice">
+                    <option>Drop-In Flex ($12/class)</option>
+                    <option>Summer Booster ($10/class - MOST POPULAR)</option>
+                    <option>The Grand Elite ($309.99/season - BEST VALUE UNLIMITED)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="notes">Specific Math Areas Needing Help (Optional)</label>
+                <textarea id="notes" rows="4" placeholder="Algebra, Geometry, test prep, etc."></textarea>
+            </div>
+            <button type="submit" class="cta-btn" style="width:100%;">Submit Registration Request</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
+    </footer>
+
+    <!-- Interactive Navigation Tab Controller Script -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab containers
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove active highlight links from navbar anchors
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => link.classList.remove('active'));
+
+            // Activate chosen target section container and link accent highlights
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+
+            // Instantly auto-scroll modern user view window smoothly back to top point
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+</body>
+</html>
