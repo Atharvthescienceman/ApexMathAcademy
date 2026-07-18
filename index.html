@@ -216,10 +216,19 @@
         }
 
         .price-tag {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: bold;
             color: var(--dark);
-            margin: 1.5rem 0;
+            margin: 1rem 0;
+            line-height: 1.2;
+        }
+
+        .price-sub {
+            font-size: 1rem;
+            font-weight: normal;
+            color: #6b7280;
+            display: block;
+            margin-top: 0.25rem;
         }
 
         .features-list {
@@ -383,9 +392,11 @@
             <div class="card">
                 <div>
                     <h3>Drop-In Flex</h3>
-                    <div class="price-tag">$12<span style="font-size:1.2rem; font-weight:normal; color:#6b7280;"> / session</span></div>
+                    <div class="price-tag">
+                        $12<span class="price-sub">Group / session</span>
+                        <span style="font-size:1.4rem; color:var(--primary); font-weight:bold; display:block; margin-top:0.5rem;">$17<span class="price-sub" style="display:inline;"> Private 1-on-1</span></span>
+                    </div>
                     <ul class="features-list">
-                        <li>✓ 40 Minutes per sesssion</li>
                         <li>✓ Perfect for quick homework turn-arounds</li>
                         <li>✓ Pay entirely as you go</li>
                         <li>✓ Zero long-term contract structural ties</li>
@@ -400,9 +411,11 @@
                 <div>
                     <span style="background:var(--secondary); color:white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:bold;">MOST POPULAR</span>
                     <h3 style="margin-top:0.5rem;">Summer Booster</h3>
-                    <div class="price-tag">$10<span style="font-size:1.2rem; font-weight:normal; color:#6b7280;"> / session</span></div>
+                    <div class="price-tag">
+                        $10<span class="price-sub">Group / session</span>
+                        <span style="font-size:1.4rem; color:var(--secondary); font-weight:bold; display:block; margin-top:0.5rem;">$15<span class="price-sub" style="display:inline;"> Private 1-on-1</span></span>
+                    </div>
                     <ul class="features-list">
-                        <li>✓ 45 Minutes per sesssion!</li>
                         <li>✓ Fixed summer strategy framework</li>
                         <li>✓ Minimum of 2 mandatory weekly sessions</li>
                         <li>✓ Reduced rate scaling for unlimited add-on sessions</li>
@@ -417,15 +430,17 @@
                 <div>
                     <span style="background:var(--accent); color:white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:bold;">BEST VALUE DEAL</span>
                     <h3 style="margin-top:0.5rem;">The Grand Elite</h3>
-                    <div class="price-tag">$309.99<span style="font-size:1.2rem; font-weight:normal; color:#6b7280;"> / full season</span></div>
+                    <div class="price-tag">
+                        $309.99<span class="price-sub">Group / full season</span>
+                        <span style="font-size:1.4rem; color:#b45309; font-weight:bold; display:block; margin-top:0.5rem;">$450.00<span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
+                    </div>
                     
                     <!-- SAVINGS ANALYSIS BADGE -->
                     <div class="savings-badge">
-                        💡 Save nearly $300 in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
+                        💡 Save hundreds in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
                     </div>
 
                     <ul class="features-list">
-                        <li>✓ Any length session up to 1 Hour!</li>
                         <li>★ <strong>Unlimited Classes</strong> all season long</li>
                         <li>★ One flat fee for the ultimate academic edge</li>
                         <li>★ Significantly extended class session runtimes</li>
@@ -451,13 +466,13 @@
                 <input type="text" id="parent-name" name="Parent Name" required placeholder="John Doe">
             </div>
 
-            <!-- NEW FIELD: PARENT EMAIL -->
+            <!-- PARENT EMAIL -->
             <div class="form-group">
                 <label for="parent-email">Email Address</label>
                 <input type="email" id="parent-email" name="Parent Email" required placeholder="johndoe@example.com">
             </div>
 
-            <!-- NEW FIELD: PARENT PHONE NUMBER -->
+            <!-- PARENT PHONE NUMBER -->
             <div class="form-group">
                 <label for="parent-phone">Phone Number</label>
                 <input type="tel" id="parent-phone" name="Parent Phone Number" required placeholder="(123) 456-7890">
@@ -488,14 +503,24 @@
                     <option>Other / Elementary</option>
                 </select>
             </div>
+
+            <!-- UPDATED COMPREHENSIVE PACKAGES OPTIONS DROPDOWN -->
             <div class="form-group">
                 <label for="package-choice">Desired Academic Package</label>
                 <select id="package-choice" name="Selected Plan Package">
-                    <option>Drop-In Flex ($12/class)</option>
-                    <option>Summer Booster ($10/class - MOST POPULAR)</option>
-                    <option>The Grand Elite ($309.99/season - BEST VALUE UNLIMITED)</option>
+                    <optgroup label="Standard Group Classes">
+                        <option>Drop-In Flex (Group: $12/class)</option>
+                        <option>Summer Booster (Group: $10/class - MOST POPULAR)</option>
+                        <option>The Grand Elite (Group: $309.99/season Unlimited)</option>
+                    </optgroup>
+                    <optgroup label="Premium Private 1-on-1 Sessions">
+                        <option>Drop-In Flex (Private: $17/class)</option>
+                        <option>Summer Booster (Private: $15/class)</option>
+                        <option>The Grand Elite (Private: $450.00/season Unlimited)</option>
+                    </optgroup>
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="notes">Specific Math Areas Needing Help (Optional)</label>
                 <textarea id="notes" name="Parent Message Notes" rows="4" placeholder="Algebra, Geometry, test prep, etc."></textarea>
@@ -523,7 +548,6 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Toggles visibility of the detailed paragraph description beautifully when selected
         function toggleTutorBio(selectedValue) {
             const bioBox = document.getElementById('tutor-bio-box');
             if (selectedValue === 'atharv') {
