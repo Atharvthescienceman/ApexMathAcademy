@@ -359,6 +359,36 @@
             margin-top: 1rem;
         }
 
+        /* Toggle Button Container for Jobs/Volunteer */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 0.75rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid var(--primary);
+            background-color: var(--white);
+            color: var(--primary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .toggle-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -563,12 +593,19 @@
         </form>
     </section>
 
-    <!-- TAB 5: JOBS / INSTRUCTOR APPLICATIONS -->
+    <!-- TAB 5: JOBS / TEAM APPLICATIONS -->
     <section id="jobs" class="tab-content">
-        <h2 class="section-title">Join Our Elite Tutoring Team</h2>
+        <h2 class="section-title">Join Our Elite Team</h2>
         
-        <div class="requirements-box">
-            <h3>Compensation & Criteria to Apply:</h3>
+        <!-- Tab Sub-Navigation Toggle System -->
+        <div class="toggle-container">
+            <button type="button" id="toggle-paid-btn" class="toggle-btn active" onclick="switchApplicationType('paid')">💼 Paid Instructor Position</button>
+            <button type="button" id="toggle-volunteer-btn" class="toggle-btn" onclick="switchApplicationType('volunteer')">🤝 Volunteer Position</button>
+        </div>
+
+        <!-- BOX A: PAID REQUIREMENTS -->
+        <div id="paid-requirements" class="requirements-box">
+            <h3>Paid Position Perks & Criteria:</h3>
             <ul>
                 <li>💰 **Competitive Salary:** $12.00 per hour for every active lesson hour conducted</li>
                 <li>Must be at least 14 years old (Adults & Students welcome)</li>
@@ -576,28 +613,42 @@
             </ul>
         </div>
 
+        <!-- BOX B: VOLUNTEER REQUIREMENTS (HIDDEN BY DEFAULT) -->
+        <div id="volunteer-requirements" class="requirements-box" style="display: none; background-color: #f0fdf4; border-left-color: #16a34a;">
+            <h3 style="color: #166534;">Volunteer Program Perks & Criteria:</h3>
+            <ul>
+                <li>📜 **Certified Service Tracking:** Receive an official certificate documenting your community service hours</li>
+                <li>🏅 Perfect credential for National Honor Society (NHS/NJHS) tracker files and college mapping profiles</li>
+                <li>Must be at least 14 years old and successfully finished with Algebra II</li>
+            </ul>
+        </div>
+
         <form action="https://formspree.io/f/xvzeaawj" method="POST">
+            
+            <!-- Hidden tracker input to tell you which position they applied for -->
+            <input type="hidden" id="application-type-tracker" name="Application Position Type" value="Paid Instructor ($12/hr)">
+
             <div class="form-section-header">1. Basic Information</div>
             
             <div class="split-row">
                 <div class="form-group">
                     <label for="app-first-name">First Name</label>
-                    <input type="text" id="app-first-name" name="Instructor First Name" required placeholder="Alex">
+                    <input type="text" id="app-first-name" name="Applicant First Name" required placeholder="Alex">
                 </div>
                 <div class="form-group">
                     <label for="app-last-name">Last Name</label>
-                    <input type="text" id="app-last-name" name="Instructor Last Name" required placeholder="Smith">
+                    <input type="text" id="app-last-name" name="Applicant Last Name" required placeholder="Smith">
                 </div>
             </div>
 
             <div class="split-row">
                 <div class="form-group">
                     <label for="app-email">Email Address</label>
-                    <input type="email" id="app-email" name="Instructor Email" required placeholder="alex@example.com">
+                    <input type="email" id="app-email" name="Applicant Email" required placeholder="alex@example.com">
                 </div>
                 <div class="form-group">
                     <label for="app-phone">Phone Number</label>
-                    <input type="tel" id="app-phone" name="Instructor Phone" required placeholder="(123) 456-7890">
+                    <input type="tel" id="app-phone" name="Applicant Phone" required placeholder="(123) 456-7890">
                 </div>
             </div>
 
@@ -608,7 +659,7 @@
                 </div>
                 <div class="form-group">
                     <label for="app-classification">Application Tier</label>
-                    <select id="app-classification" name="Application Tier Classification" required>
+                    <select id="app-classification" name="Applicant Classification Tier" required>
                         <option value="">-- Select Status --</option>
                         <option value="High School Student">High School Student</option>
                         <option value="College Student">College Student / Undergraduate</option>
@@ -655,14 +706,14 @@
                 <textarea id="app-math-grades" name="Math Class Grades Background" rows="3" required placeholder="E.g., Earned an A in Algebra II Honors..."></textarea>
             </div>
 
-            <div class="form-section-header">3. Experience & Skills</div>
+            <div class="form-section-header">3. Experience & Motivation</div>
 
             <div class="form-group">
-                <label for="app-experience">Do you have previous experience teaching, mentoring, or volunteering with kids?</label>
-                <textarea id="app-experience" name="Tutoring and Leadership Experience" rows="4" required placeholder="Detail any counselor experience, club participation, peer tutoring assignments..."></textarea>
+                <label id="dynamic-experience-label" for="app-experience">Do you have previous experience teaching, mentoring, or volunteering with kids?</label>
+                <textarea id="app-experience" name="Experience or Program Motivation" rows="4" required placeholder="Detail any counselor experience, club participation, peer tutoring assignments, or why you want to join our academy team..."></textarea>
             </div>
 
-            <button type="submit" class="cta-btn" style="width:100%; background-color: var(--secondary);">Submit Application to Apex Academy</button>
+            <button type="submit" id="submit-app-btn" class="cta-btn" style="width:100%; background-color: var(--secondary);">Submit Application to Apex Academy</button>
         </form>
     </section>
 
@@ -710,6 +761,35 @@
                 gName.required = false;
                 gEmail.required = false;
                 gPhone.required = false;
+            }
+        }
+
+        // Sub-navigation switcher script to toggle dynamic interface settings cleanly
+        function switchApplicationType(type) {
+            const paidBtn = document.getElementById('toggle-paid-btn');
+            const volunteerBtn = document.getElementById('toggle-volunteer-btn');
+            const paidReq = document.getElementById('paid-requirements');
+            const volunteerReq = document.getElementById('volunteer-requirements');
+            const trackerInput = document.getElementById('application-type-tracker');
+            const expLabel = document.getElementById('dynamic-experience-label');
+            const submitBtn = document.getElementById('submit-app-btn');
+
+            if (type === 'volunteer') {
+                paidBtn.classList.remove('active');
+                volunteerBtn.classList.add('active');
+                paidReq.style.display = 'none';
+                volunteerReq.style.display = 'block';
+                trackerInput.value = "Volunteer (Hours Tracking & Certificate)";
+                expLabel.innerText = "Why are you interested in volunteering at Apex Math Academy and earning certified service hours?";
+                submitBtn.style.backgroundColor = "#16a34a"; // Changes button to match volunteer theme green
+            } else {
+                paidBtn.classList.add('active');
+                volunteerBtn.classList.remove('active');
+                paidReq.style.display = 'block';
+                volunteerReq.style.display = 'none';
+                trackerInput.value = "Paid Instructor ($12/hr)";
+                expLabel.innerText = "Do you have previous experience teaching, mentoring, or volunteering with kids?";
+                submitBtn.style.backgroundColor = "var(--secondary)"; // Reverts to corporate teal
             }
         }
     </script>
