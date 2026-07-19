@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="BDl43pIYGFu9iL1LkzkGkFMcg_VfjWtkZ6HkikdCRkc" />
-    
-    <meta name="description" content="Premium local math tutoring by Atharv Gupta. Apex Math Academy offers flexible group classes and private 1-on-1 math sessions.">
-<meta name="keywords" content="Atharv Gupta, Apex Math Academy, math tutor, tutoring, math academy">
-<link rel="canonical" href="https://atharvthescienceman.github.io/ApexMathAcademy/" />
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="google98687e5d364ebc6c" />
+    <meta name="description" content="Premium local math tutoring by Atharv Gupta. Apex Math Academy offers flexible group classes and private 1-on-1 math sessions.">
+    <meta name="keywords" content="Atharv Gupta, Apex Math Academy, math tutor, tutoring, math academy">
+    <link rel="canonical" href="https://atharvthescienceman.github.io/ApexMathAcademy/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Math Academy | Global Tutoring</title>
+    <title>Apex Math Academy</title>
     <style>
         /* Modern Design Framework */
         :root {
@@ -19,6 +18,7 @@
             --white: #ffffff;
             --accent: #f59e0b; /* Amber highlight for Grand Elite value */
             --heart: #e11d48; /* Rose color for charity highlight */
+            --border: #e5e7eb;
         }
 
         * {
@@ -268,6 +268,15 @@
             margin: 0 auto;
         }
 
+        .form-section-header {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--light);
+            font-weight: bold;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -284,6 +293,12 @@
             border: 1px solid #d1d5db;
             border-radius: 4px;
             font-size: 1rem;
+        }
+
+        .split-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
         }
 
         /* BEAUTIFUL DYNAMIC TUTOR PROFILE BOX */
@@ -313,6 +328,37 @@
             text-align: left;
         }
 
+        .requirements-box {
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .requirements-box h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .requirements-box ul {
+            list-style-position: inside;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .guardian-panel {
+            background-color: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -320,6 +366,13 @@
             padding: 2rem;
             margin-top: 4rem;
             font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .split-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
     </style>
 </head>
@@ -338,6 +391,7 @@
             <li><a onclick="switchTab('about')" id="tab-about">About</a></li>
             <li><a onclick="switchTab('packages')" id="tab-packages">Packages</a></li>
             <li><a onclick="switchTab('contact')" id="tab-contact">Sign Up</a></li>
+            <li><a onclick="switchTab('jobs')" id="tab-jobs">Join Team</a></li>
         </ul>
     </nav>
 
@@ -350,8 +404,6 @@
 
     <!-- TAB 1: HOME -->
     <section id="home" class="tab-content active">
-        
-        <!-- MASSIVE HIGH-EMPHASIS CHARITY BOX HIGHER UP ON THE HOME PAGE -->
         <div class="charity-hero-box">
             <div class="charity-headline">📊 Learning with a Powerful Purpose</div>
             <p class="charity-subtext">
@@ -362,10 +414,9 @@
         <div class="grid-2">
             <div>
                 <h2>Premium Local Math Tutoring</h2>
-                <p style="margin: 1.5rem 0;">Welcome to Apex Math Academy, where students unlock their true academic potential. We specialize in transforming math stress into structural understanding, confidence, and top-tier school results.</p>
+                <p style="margin: 1.5rem 0;">Welcome to Apex Math Academy, where neighborhood students unlock their true academic potential. We specialize in transforming math stress into structural understanding, confidence, and top-tier school results.</p>
                 <p>From essential homework support to advanced summer prep routines, our flexible paths fit perfectly into your family's schedule.</p>
             </div>
-            <!-- REAL IMAGE FOR HOME PAGE -->
             <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8M3x8c3R1ZHlpbmclMjBtYXRolGVufDB8fHx8MTY3ODg5NTg5OA&ixlib=rb-4.0.3&q=80&w=800" alt="Student happily writing math notes" class="real-img">
         </div>
     </section>
@@ -374,7 +425,6 @@
     <section id="about" class="tab-content">
         <h2 class="section-title">Why Choose Apex?</h2>
         <div class="grid-2">
-            <!-- REAL IMAGE FOR ABOUT PAGE -->
             <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8dHV0b3Jpbmd8ZW58MHx8fHwxNjc4ODk1ODk4&ixlib=rb-4.0.3&q=80&w=800" alt="Friendly math explanation on a tablet" class="real-img">
             <div>
                 <h3>Our Vision & Approach</h3>
@@ -392,8 +442,6 @@
     <section id="packages" class="tab-content">
         <h2 class="section-title">Transparent, Flexible Pricing Plans</h2>
         <div class="pricing-grid">
-            
-            <!-- Drop-In Flex Plan (LEFT) -->
             <div class="card">
                 <div>
                     <h3>Drop-In Flex</h3>
@@ -411,7 +459,6 @@
                 <button class="cta-btn" style="width:100%;" onclick="switchTab('contact')">Choose Flex</button>
             </div>
 
-            <!-- Summer Booster Plan (MIDDLE - MOST POPULAR) -->
             <div class="card popular">
                 <div>
                     <span style="background:var(--secondary); color:white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:bold;">MOST POPULAR</span>
@@ -430,7 +477,6 @@
                 <button class="cta-btn" style="width:100%; background:var(--primary);" onclick="switchTab('contact')">Choose Booster</button>
             </div>
 
-            <!-- The Grand Elite Plan (RIGHT - BEST VALUE & UNLIMITED SEASON) -->
             <div class="card elite-value">
                 <div>
                     <span style="background:var(--accent); color:white; padding:0.25rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:bold;">BEST VALUE DEAL</span>
@@ -439,12 +485,9 @@
                         $309.99<span class="price-sub">Group / full season</span>
                         <span style="font-size:1.4rem; color:#b45309; font-weight:bold; display:block; margin-top:0.5rem;">$450.00<span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
                     </div>
-                    
-                    <!-- SAVINGS ANALYSIS BADGE -->
                     <div class="savings-badge">
                         💡 Save hundreds in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
                     </div>
-
                     <ul class="features-list">
                         <li>★ <strong>Unlimited Classes</strong> all season long</li>
                         <li>★ One flat fee for the ultimate academic edge</li>
@@ -455,7 +498,6 @@
                 </div>
                 <button class="cta-btn" style="width:100%; background:var(--accent);" onclick="switchTab('contact')">Choose Elite</button>
             </div>
-
         </div>
     </section>
 
@@ -464,34 +506,25 @@
         <h2 class="section-title">Secure Your Seat at Apex</h2>
         <p style="text-align:center; margin-bottom: 2rem;">Fill out this simple form, and we will contact you within 24 hours to finalize your student's schedule.</p>
         
-        <!-- FORMSPREE LINK CONNECTED -->
         <form action="https://formspree.io/f/xvzeaawj" method="POST">
             <div class="form-group">
                 <label for="parent-name">Parent / Guardian Name</label>
                 <input type="text" id="parent-name" name="Parent Name" required placeholder="John Doe">
             </div>
-
-            <!-- PARENT EMAIL -->
             <div class="form-group">
                 <label for="parent-email">Email Address</label>
                 <input type="email" id="parent-email" name="Parent Email" required placeholder="johndoe@example.com">
             </div>
-
-            <!-- PARENT PHONE NUMBER -->
             <div class="form-group">
                 <label for="parent-phone">Phone Number</label>
                 <input type="tel" id="parent-phone" name="Parent Phone Number" required placeholder="(123) 456-7890">
             </div>
-            
-            <!-- TUTOR SELECTION WITH INTERACTIVE POPUP BIO -->
             <div class="form-group">
                 <label for="tutor-select">Select Your Instructor</label>
                 <select id="tutor-select" name="Selected Tutor" onchange="toggleTutorBio(this.value)" required>
                     <option value="">-- Click to Choose a Tutor --</option>
                     <option value="atharv">Atharv Gupta (Founder & Core Instructor)</option>
                 </select>
-
-                <!-- COLORFUL INSTRUCTOR BIO PANEL IN PARAGRAPH FORM -->
                 <div id="tutor-bio-box" class="tutor-profile-box" style="display: none;">
                     <div class="tutor-header">👤 Meet Your Instructor: Atharv Gupta</div>
                     <p class="tutor-paragraph">
@@ -499,7 +532,6 @@
                     </p>
                 </div>
             </div>
-
             <div class="form-group">
                 <label for="student-grade">Student's Current Grade Level</label>
                 <select id="student-grade" name="Student Grade Level">
@@ -508,8 +540,6 @@
                     <option>Other / Elementary</option>
                 </select>
             </div>
-
-            <!-- UPDATED COMPREHENSIVE PACKAGES OPTIONS DROPDOWN -->
             <div class="form-group">
                 <label for="package-choice">Desired Academic Package</label>
                 <select id="package-choice" name="Selected Plan Package">
@@ -525,7 +555,6 @@
                     </optgroup>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="notes">Specific Math Areas Needing Help (Optional)</label>
                 <textarea id="notes" name="Parent Message Notes" rows="4" placeholder="Algebra, Geometry, test prep, etc."></textarea>
@@ -534,8 +563,110 @@
         </form>
     </section>
 
+    <!-- NEW TAB 5: JOBS / INSTRUCTOR APPLICATIONS -->
+    <section id="jobs" class="tab-content">
+        <h2 class="section-title">Join Our Elite Tutoring Team</h2>
+        
+        <div class="requirements-box">
+            <h3>Minimum Criteria to Apply:</h3>
+            <ul>
+                <li>Must be at least 14 years old (Adults & Students welcome)</li>
+                <li>Minimum completion of Algebra II with superior academic standing</li>
+            </ul>
+        </div>
+
+        <form action="https://formspree.io/f/xvzeaawj" method="POST">
+            <div class="form-section-header">1. Basic Information</div>
+            
+            <div class="split-row">
+                <div class="form-group">
+                    <label for="app-first-name">First Name</label>
+                    <input type="text" id="app-first-name" name="Instructor First Name" required placeholder="Alex">
+                </div>
+                <div class="form-group">
+                    <label for="app-last-name">Last Name</label>
+                    <input type="text" id="app-last-name" name="Instructor Last Name" required placeholder="Smith">
+                </div>
+            </div>
+
+            <div class="split-row">
+                <div class="form-group">
+                    <label for="app-email">Email Address</label>
+                    <input type="email" id="app-email" name="Instructor Email" required placeholder="alex@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="app-phone">Phone Number</label>
+                    <input type="tel" id="app-phone" name="Instructor Phone" required placeholder="(123) 456-7890">
+                </div>
+            </div>
+
+            <div class="split-row">
+                <div class="form-group">
+                    <label for="app-age">Age Verification</label>
+                    <input type="number" id="app-age" name="Applicant Age" min="14" required placeholder="Minimum 14" onchange="checkAgeRequirement(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="app-classification">Application Tier</label>
+                    <select id="app-classification" name="Application Tier Classification" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="High School Student">High School Student</option>
+                        <option value="College Student">College Student / Undergraduate</option>
+                        <option value="Adult Professional">Adult Professional / Educator</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- MINOR GUARDIAN PANEL -->
+            <div id="minor-guardian-section" class="guardian-panel" style="display: none;">
+                <h4 style="color: #b45309; margin-bottom: 0.75rem; font-size: 1rem;">👤 Parent / Guardian Authorization Tracking</h4>
+                <div class="form-group">
+                    <label for="g-name">Parent/Guardian Full Name</label>
+                    <input type="text" id="g-name" name="Parent Guardian Name" placeholder="Jane Smith">
+                </div>
+                <div class="split-row" style="margin-bottom: 0;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="g-email">Guardian Email</label>
+                        <input type="email" id="g-email" name="Parent Guardian Email" placeholder="janesmith@example.com">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label for="g-phone">Guardian Phone</label>
+                        <input type="tel" id="g-phone" name="Parent Guardian Phone" placeholder="(123) 456-7891">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section-header">2. Academic Background</div>
+
+            <div class="form-group">
+                <label for="app-highest-math">Highest Level of Mathematics Completed Successfully</label>
+                <select id="app-highest-math" name="Highest Level Math Completed" required>
+                    <option value="">-- Choose Level --</option>
+                    <option value="Algebra II">Algebra II (Prerequisite Baseline)</option>
+                    <option value="Pre-Calculus / Trigonometry">Pre-Calculus / Trigonometry</option>
+                    <option value="AP Calculus AB / BC">AP Calculus AB / BC</option>
+                    <option value="AP Statistics">AP Statistics</option>
+                    <option value="Higher College Level Core Mathematics">Higher College Level Core Mathematics</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="app-math-grades">Describe your academic performance metrics in previous advanced math courses:</label>
+                <textarea id="app-math-grades" name="Math Class Grades Background" rows="3" required placeholder="E.g., Earned an A in Algebra II Honors..."></textarea>
+            </div>
+
+            <div class="form-section-header">3. Experience & Skills</div>
+
+            <div class="form-group">
+                <label for="app-experience">Do you have previous experience teaching, mentoring, or volunteering with kids?</label>
+                <textarea id="app-experience" name="Tutoring and Leadership Experience" rows="4" required placeholder="Detail any counselor experience, club participation, peer tutoring assignments..."></textarea>
+            </div>
+
+            <button type="submit" class="cta-btn" style="width:100%; background-color: var(--secondary);">Submit Application to Apex Academy</button>
+        </form>
+    </section>
+
     <footer>
-        <p>© 2026 Apex Math Academy. Built to inspire learning.</p>
+        <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
     </footer>
 
     <!-- Interactive Navigation & Bio UI Logic Script -->
@@ -559,6 +690,25 @@
                 bioBox.style.display = 'block';
             } else {
                 bioBox.style.display = 'none';
+            }
+        }
+
+        function checkAgeRequirement(ageValue) {
+            const guardianBox = document.getElementById('minor-guardian-section');
+            const gName = document.getElementById('g-name');
+            const gEmail = document.getElementById('g-email');
+            const gPhone = document.getElementById('g-phone');
+            
+            if (ageValue !== '' && parseInt(ageValue) < 18) {
+                guardianBox.style.display = 'block';
+                gName.required = true;
+                gEmail.required = true;
+                gPhone.required = true;
+            } else {
+                guardianBox.style.display = 'none';
+                gName.required = false;
+                gEmail.required = false;
+                gPhone.required = false;
             }
         }
     </script>
