@@ -122,6 +122,22 @@
             background-color: #0f766e;
         }
 
+        /* Dynamic Syllabus Link Buttons */
+        .syllabus-link-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 2px dashed var(--primary);
+            transition: color 0.2s;
+        }
+
+        .syllabus-link-btn:hover {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+
         /* Content Tab Structure */
         .tab-content {
             display: none;
@@ -446,6 +462,8 @@
                 <h2>Premium Local Math Tutoring</h2>
                 <p style="margin: 1.5rem 0;">Welcome to Apex Math Academy, where neighborhood students unlock their true academic potential. We specialize in transforming math stress into structural understanding, confidence, and top-tier school results.</p>
                 <p>From essential homework support to advanced summer prep routines, our flexible paths fit perfectly into your family's schedule.</p>
+                <!-- ADDED SYLLABUS ROUTER LINK -->
+                <a href="syllabus.html" class="syllabus-link-btn">📋 View Academic Syllabus (Grades K-9) →</a>
             </div>
             <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8M3x8c3R1ZHlpbmclMjBtYXRolGVufDB8fHx8MTY3ODg5NTg5OA&ixlib=rb-4.0.3&q=80&w=800" alt="Student happily writing math notes" class="real-img">
         </div>
@@ -464,6 +482,8 @@
                     <li><strong>Flexible Frameworks:</strong> Pay-as-you-go sessions or structured summer plans.</li>
                     <li><strong>Targeted Tracking:</strong> Focused directly on boosting school grade standards.</li>
                 </ul>
+                <!-- ADDED SYLLABUS ROUTER LINK -->
+                <a href="syllabus.html" class="syllabus-link-btn">📋 View Academic Syllabus (Grades K-9) →</a>
             </div>
         </div>
     </section>
@@ -471,6 +491,10 @@
     <!-- TAB 3: PACKAGES -->
     <section id="packages" class="tab-content">
         <h2 class="section-title">Transparent, Flexible Pricing Plans</h2>
+        <p style="text-align: center; margin-top: -2rem; margin-bottom: 1.5rem;">
+            <!-- ADDED SYLLABUS ROUTER LINK -->
+            <a href="syllabus.html" class="syllabus-link-btn">📋 View Our Curriculum Syllabus Breakdowns by Grade →</a>
+        </p>
         <div class="pricing-grid">
             <div class="card">
                 <div>
@@ -597,13 +621,11 @@
     <section id="jobs" class="tab-content">
         <h2 class="section-title">Join Our Elite Team</h2>
         
-        <!-- Tab Sub-Navigation Toggle System -->
         <div class="toggle-container">
             <button type="button" id="toggle-paid-btn" class="toggle-btn active" onclick="switchApplicationType('paid')">💼 Paid Instructor Position</button>
             <button type="button" id="toggle-volunteer-btn" class="toggle-btn" onclick="switchApplicationType('volunteer')">🤝 Volunteer Position</button>
         </div>
 
-        <!-- BOX A: PAID REQUIREMENTS -->
         <div id="paid-requirements" class="requirements-box">
             <h3>Paid Position Perks & Criteria:</h3>
             <ul>
@@ -613,7 +635,6 @@
             </ul>
         </div>
 
-        <!-- BOX B: VOLUNTEER REQUIREMENTS (HIDDEN BY DEFAULT) -->
         <div id="volunteer-requirements" class="requirements-box" style="display: none; background-color: #f0fdf4; border-left-color: #16a34a;">
             <h3 style="color: #166534;">Volunteer Program Perks & Criteria:</h3>
             <ul>
@@ -624,8 +645,6 @@
         </div>
 
         <form action="https://formspree.io/f/xvzeaawj" method="POST">
-            
-            <!-- Hidden tracker input to tell you which position they applied for -->
             <input type="hidden" id="application-type-tracker" name="Application Position Type" value="Paid Instructor ($12/hr)">
 
             <div class="form-section-header">1. Basic Information</div>
@@ -668,7 +687,6 @@
                 </div>
             </div>
 
-            <!-- MINOR GUARDIAN PANEL -->
             <div id="minor-guardian-section" class="guardian-panel" style="display: none;">
                 <h4 style="color: #b45309; margin-bottom: 0.75rem; font-size: 1rem;">👤 Parent / Guardian Authorization Tracking</h4>
                 <div class="form-group">
@@ -710,7 +728,7 @@
 
             <div class="form-group">
                 <label id="dynamic-experience-label" for="app-experience">Do you have previous experience teaching, mentoring, or volunteering with kids?</label>
-                <textarea id="app-experience" name="Experience or Program Motivation" rows="4" required placeholder="Detail any counselor experience, club participation, peer tutoring assignments, or why you want to join our academy team..."></textarea>
+                <textarea id="app-experience" name="Experience or Program Motivation" rows="4" required placeholder="Detail any counselor experience, club participation, peer tutoring assignments..."></textarea>
             </div>
 
             <button type="submit" id="submit-app-btn" class="cta-btn" style="width:100%; background-color: var(--secondary);">Submit Application to Apex Academy</button>
@@ -764,7 +782,6 @@
             }
         }
 
-        // Sub-navigation switcher script to toggle dynamic interface settings cleanly
         function switchApplicationType(type) {
             const paidBtn = document.getElementById('toggle-paid-btn');
             const volunteerBtn = document.getElementById('toggle-volunteer-btn');
@@ -781,7 +798,7 @@
                 volunteerReq.style.display = 'block';
                 trackerInput.value = "Volunteer (Hours Tracking & Certificate)";
                 expLabel.innerText = "Why are you interested in volunteering at Apex Math Academy and earning certified service hours?";
-                submitBtn.style.backgroundColor = "#16a34a"; // Changes button to match volunteer theme green
+                submitBtn.style.backgroundColor = "#16a34a";
             } else {
                 paidBtn.classList.add('active');
                 volunteerBtn.classList.remove('active');
@@ -789,7 +806,7 @@
                 volunteerReq.style.display = 'none';
                 trackerInput.value = "Paid Instructor ($12/hr)";
                 expLabel.innerText = "Do you have previous experience teaching, mentoring, or volunteering with kids?";
-                submitBtn.style.backgroundColor = "var(--secondary)"; // Reverts to corporate teal
+                submitBtn.style.backgroundColor = "var(--secondary)";
             }
         }
     </script>
