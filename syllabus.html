@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Curriculum Matrix | Apex Math Academy</title>
+    <title>Curriculum Syllabus | Apex Math Academy</title>
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #0d9488;
-            --dark: #1f2937;
-            --light: #f9fafb;
+            --primary-color: #1e3a8a;
+            --secondary-color: #0d9488;
+            --accent-color: #f59e0b;
+            --text-dark: #1f2937;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
             --white: #ffffff;
-            --border: #e5e7eb;
-            --ixl-orange: #f97316;
         }
 
         * {
@@ -23,496 +23,371 @@
         }
 
         body {
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             line-height: 1.6;
-            padding: 3rem 5%;
+            padding: 20px;
         }
 
-        .syllabus-container {
+        .container {
             max-width: 1100px;
-            margin: 0 auto;
+            margin: 40px auto;
             background: var(--white);
-            padding: 3rem;
+            padding: 40px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-top: 6px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .back-home {
-            display: inline-block;
-            text-decoration: none;
-            color: var(--secondary);
-            font-weight: bold;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 20px;
         }
 
-        .back-home:hover {
-            color: #0f766e;
-        }
-
-        h1 {
-            color: var(--primary);
+        header h1 {
+            color: var(--primary-color);
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 10px;
         }
 
-        .sub-p {
+        header p {
+            color: var(--secondary-color);
             font-size: 1.1rem;
-            color: #4b5563;
-            margin-bottom: 3rem;
+            font-weight: 600;
         }
 
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-item label {
+            font-size: 0.85rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Accordion Structure */
         .grade-accordion {
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border);
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
         }
 
         .grade-header {
-            background-color: #f3f4f6;
-            padding: 1.25rem 1.5rem;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--primary);
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 18px 25px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            font-size: 1.25rem;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: background 0.2s;
+            transition: background 0.2s ease;
         }
 
         .grade-header:hover {
-            background-color: #e5e7eb;
+            background-color: #172554;
+        }
+
+        .grade-header::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .grade-header.active::after {
+            content: '−';
         }
 
         .grade-content {
-            display: none;
-            padding: 2rem;
-            background-color: var(--white);
-            border-top: 1px solid var(--border);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: var(--white);
         }
 
-        .skills-grid {
+        .syllabus-grid {
+            padding: 30px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .skill-category {
-            background-color: var(--light);
-            padding: 1.25rem;
-            border-radius: 6px;
-            border-left: 4px solid var(--ixl-orange);
+        .category-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s;
         }
 
-        .skill-category h4 {
-            color: var(--primary);
-            margin-bottom: 0.3rem;
+        .category-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--secondary-color);
+        }
+
+        .category-title {
+            color: var(--primary-color);
+            font-weight: bold;
             font-size: 1.1rem;
-            font-weight: 700;
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 6px;
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
         }
 
-        .letter-badge {
-            background-color: var(--ixl-orange);
-            color: white;
-            padding: 0.1rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            min-width: 32px;
-            text-align: center;
+        .category-range {
+            font-size: 0.85rem;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 8px;
+            border-radius: 12px;
         }
 
-        .skill-category p {
+        .skills-list {
+            list-style: none;
             font-size: 0.95rem;
-            color: #4b5563;
-            padding-left: 0.25rem;
+            color: #374151;
+        }
+
+        .skills-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .skills-list li::before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #0f766e;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px; margin: 10px auto; }
+            .stats-bar { flex-direction: column; gap: 15px; }
+            .syllabus-grid { grid-template-columns: 1fr; padding: 15px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="syllabus-container">
-        <a href="index.html" class="back-home">← Return to Apex Homepage</a>
-        <h1>Master Curriculum Matrix</h1>
-        <p class="sub-p">Complete chronological topic tracking indices mapped directly out to global academic matching scales.</p>
+<div class="container">
+    <header>
+        <h1>Apex Math Academy</h1>
+        <p>Comprehensive Academic Curriculum & IXL Metric Alignment</p>
+    </header>
 
-        <!-- KINDERGARTEN -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('k-grade')">🐣 Kindergarten Complete Track (A to OO) <span>+</span></div>
-            <div id="k-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Numbers and counting to 3</h4><p>Identify, count, and write numbers up to 3.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Numbers and counting to 5</h4><p>Count and compare groups up to 5.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Numbers and counting to 10</h4><p>Count, write, and identify numbers 1 to 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Comparing numbers up to 10</h4><p>Determine fewer, more, or equal quantities.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Numbers and counting to 20</h4><p>Count out tracking blocks up to 20.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Numbers and counting beyond 20</h4><p>Count to 100 by ones and tens benchmarks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Skip-counting</h4><p>Skip-count by twos, fives, and tens parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Comparing</h4><p>Compare groups and numbers by value metrics.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Patterns</h4><p>Identify, repeat, and grow shape patterns.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Understand addition up to 5</h4><p>Basic modeling and introduction sentences to 5.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Addition up to 5</h4><p>Add single-digits with sums up to 5.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Understand addition up to 10</h4><p>Ten-frame structures and visual addition models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Addition up to 10</h4><p>Fluency equations with sums up to 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Understand subtraction up to 5</h4><p>Basic take-away subtraction modeling blocks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Subtraction up to 5</h4><p>Decompose numbers and subtract within 5.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Understand subtraction up to 10</h4><p>Decompose numbers using subtraction sentences to 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Subtraction up to 10</h4><p>Fluency operations with differences within 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Mixed operations</h4><p>Add and subtract interchangeably with models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Positions</h4><p>Inside, outside, top, middle, bottom alignments.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Fractions</h4><p>Identify equal parts, halves, and fourths bases.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Time</h4><p>Read clocks to the hour and general sequence models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Sorting, ordering, & classifying</h4><p>Classify items data by structural criteria loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> Data and graphs</h4><p>Record tallies and read simple pictographs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">X</span> Probability</h4><p>More likely, less likely, and certain outcomes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Y</span> Measurement</h4><p>Compare dimensions: light/heavy, long/short scales.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Z</span> Money</h4><p>Identify values of pennies, nickels, dimes, quarters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">AA</span> Flat shapes</h4><p>Circles, triangles, squares, rectangles, hexagons.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">BB</span> Solid shapes</h4><p>Cubes, cones, cylinders, and spheres tracking.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">CC</span> Geometric measurement</h4><p>Count corners, sides, and match geometric pairs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">DD</span> Money value matching</h4><p>Count coin quantities to match cost metrics.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">EE</span> Sequence sorting</h4><p>Order events chronologically on time lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">FF</span> Size comparison</h4><p>Sort items based on relative capacity volumes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">GG</span> Number lines</h4><p>Identify missing placeholders on tracking lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">HH</span> Word problems addition</h4><p>Real-world adding situations up to 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">II</span> Word problems subtraction</h4><p>Real-world separating situations within 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">JJ</span> Graph matching</h4><p>Match concrete groups straight to bar chart logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">KK</span> Composite shapes</h4><p>Compose larger geometric structures from simple items.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">LL</span> Value sets match</h4><p>Identify equal value numbers and objects collections.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">MM</span> Symmetry tracking</h4><p>Identify reflective symmetry profiles on flat lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">NN</span> Visual patterns parameters</h4><p>Complete growing patterns metrics arrays.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">OO</span> Ordinal metrics trackers</h4><p>First, second, third, through tenth metrics positioning.</p></div>
-                </div>
-            </div>
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span>Kindergarten - Algebra 1</span>
+            <label>Academic Scope</label>
         </div>
-
-        <!-- GRADE 1 THROUGH 8 PLUGINS ARE CONDENSED LOGICALLY TO MAINTAIN INDEX SPACE -->
-        <!-- GRADE 1 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g1-grade')">🎒 Grade 1 Complete Track (A to U) <span>+</span></div>
-            <div id="g1-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Counting & number patterns</h4><p>Count to 120, skip-count, odd/even tracking.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Understand addition</h4><p>Addition sentences up to 10 with word models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Addition word problems</h4><p>Solve single-digit word metrics problems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Addition facts to 10</h4><p>Fluency equations with sums up to 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Addition facts to 20</h4><p>Double facts and near-double metrics.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Understand subtraction</h4><p>Subtraction expressions with visual balances.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Subtraction word problems</h4><p>Real-world take-away problem modeling.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Subtraction facts to 10</h4><p>Fluency structures with differences up to 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Subtraction facts to 20</h4><p>Advanced subtraction tracking models within 20.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Mixed operations</h4><p>Fact families, turning addition into subtraction.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Comparing</h4><p>Comparing tracking numbers with sign configurations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Place value</h4><p>Tens and ones structural modeling analysis.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Two-digit addition</h4><p>Add multiples of 10 and regroup parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Two-digit subtraction</h4><p>Subtract multiples of 10 with base blocks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Geometry</h4><p>Symmetry, vertices, open and closed curves.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Spatial sense</h4><p>Relative positioning and tracking grid shifts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Data and graphs</h4><p>Interpret picture charts and t-charts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Measurement</h4><p>Measure lengths using non-standard systems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Fractions</h4><p>Halves, thirds, and quarters equal configurations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Time</h4><p>Match digital and analog time to the half-hour.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Money</h4><p>Count coin values for purchase tracking models.</p></div>
-                </div>
-            </div>
+        <div class="stat-item">
+            <span>386 Mastery Targets</span>
+            <label>Specific Core Skills</label>
         </div>
-
-        <!-- GRADE 2 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g2-grade')">📘 Grade 2 Complete Track (A to W) <span>+</span></div>
-            <div id="g2-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Counting & patterns</h4><p>Count forward/backward, number line jumps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Understand addition</h4><p>Add values using grid alignments balances.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Addition facts to 20</h4><p>Fact family arrays, sign configurations loop.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Understand subtraction</h4><p>Write inverse subtraction from item grids.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Subtraction facts to 20</h4><p>Fluency tracking across subtraction steps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Addition - 1 digit</h4><p>Sums of three or four variables digits.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Subtraction - 1 digit</h4><p>Borrowing patterns with single factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Addition - 2 digits</h4><p>Regrouping models up to 100.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Subtraction - 2 digits</h4><p>Two-digit borrow layouts configurations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Addition - 3 digits</h4><p>Column sums across hundreds marks indices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Subtraction - 3 digits</h4><p>Three-digit column subtraction operations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Properties</h4><p>Identity, associative, commutative variables links.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Mixed operations</h4><p>Multi-step calculation chains with indicators.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Place value</h4><p>Values configurations up to thousands scales.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Estimation & rounding</h4><p>Round factors to nearest ten limits.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Logical reasoning</h4><p>Complete deductive puzzle matrices sets.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Money</h4><p>Coin calculations for exact purchase changes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Time</h4><p>Quarter-hours parsing, A.M./P.M. distinctions.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Data & graphs</h4><p>Plot data into interactive bar graphs models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Measurement</h4><p>Metric versus standard length tracking scales.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Geometry</h4><p>Identify polygon features and solid faces attributes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Fractions</h4><p>Identify fractions parts of complete arrays balances.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> Multiplication bases</h4><p>Repeated addition arrays parameters tracking.</p></div>
-                </div>
-            </div>
+        <div class="stat-item">
+            <span>353 Channels</span>
+            <label>Integrated Video Resources</label>
         </div>
-
-        <!-- GRADE 3 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g3-grade')">✏️ Grade 3 Complete Track (A to W) <span>+</span></div>
-            <div id="g3-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Numbers & comparing</h4><p>Write numbers in expanded form, ordinal tracking.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Place value</h4><p>Value shifts when changing digit values.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Addition</h4><p>Properties of addition, multi-digit parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Subtraction</h4><p>Subtract numbers across zeros confidently.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Understand multiplication</h4><p>Number lines and equal group balance structures.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Multiplication fluency</h4><p>Multiplication facts up to 12 cleanly.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Multiplication skill builders</h4><p>Multiplication with multiples of 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Understand division</h4><p>Relate division arrays directly to items groups.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Division fluency</h4><p>Division facts up to 12 parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Division skill builders</h4><p>Divide numbers ending in zeros tracking.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Mixed operations</h4><p>Word problems with equations and input/output tables.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Properties</h4><p>Distributive and identity properties matrix.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Equations & variables</h4><p>Solve for variable placeholders in simple models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Estimation & rounding</h4><p>Round to nearest 10 or 100 indices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Logical reasoning</h4><p>Guess-and-check numeric pattern reasoning.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Fractions</h4><p>Decompose fractions, plot on fraction number lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Equivalent fractions</h4><p>Find equivalent forms using visual grids.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Money</h4><p>Add and subtract dollar values with decimal metrics.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Time</h4><p>Calculate elapsed time periods in word contexts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Data & graphs</h4><p>Create line plots, pictographs, and complex bars.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Measurement</h4><p>Volume, mass, and standard laboratory scaling logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Geometry</h4><p>Classify quadrilaterals, open versus closed polygons.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> Area & perimeter</h4><p>Calculate Area via square grids, boundary Perimeters.</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADE 4 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g4-grade')">📙 Grade 4 Complete Track (A to X) <span>+</span></div>
-            <div id="g4-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Number sense</h4><p>Convert standard, written, expanded form configs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Rounding</h4><p>Round multi-digit values to any targeted indices position.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Addition & subtraction</h4><p>Multi-step steps with values up to 1,000,000 logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Multiplication setup</h4><p>Multiples of 10, 100, 1,000 multiplication factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Multiply by 1 digit</h4><p>Area models, distributive layout multiplication tracking.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Multiply by 2 digits</h4><p>Partial products and standard long calculations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Division setup</h4><p>Division remainders metrics evaluation via grids.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Divide by 1 digit</h4><p>Long division algorithmic steps execution parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Mixed operations</h4><p>Complex multi-step word metrics problem chains.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Functions & variables</h4><p>Input/output tracking function tables systems rules.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Number theory</h4><p>Prime versus composite classifications, common factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Algebraic thinking</h4><p>Formulate variable algebraic expressions from texts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Data & graphs</h4><p>Frequency plots parsing, stem/leaf chart indices logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Fraction operations</h4><p>Add/subtract fractions carrying matching denominators.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Mixed numbers</h4><p>Mixed numbers transformations to improper arrays factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Multiply fractions</h4><p>Integers multiplied by proper tracking fraction variables.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Decimals</h4><p>Decimal lines mapping, tenths/hundredths models balances.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Decimal operations</h4><p>Add/subtract decimal money parameters values logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Probability</h4><p>Combinations tables logs, outcome tracking grids lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Measurement systems</h4><p>Imperial and metric conversions parameters arrays scales.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Time</h4><p>Hour fractions transformations down to second units.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Geometry</h4><p>Parallel, perpendicular, intersecting lines vector paths.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> Angles</h4><p>Protractor calculations for acute, obtuse, right angles.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">X</span> Area & perimeter</h4><p>Find missing dimensions lengths following basic formulas.</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADE 5 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g5-grade')">📗 Grade 5 Complete Track (A to X) <span>+</span></div>
-            <div id="g5-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Place value</h4><p>Compare decimal configurations with exponential notation.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Number theory</h4><p>GCF and LCM algorithmic calculations configurations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Addition & subtraction</h4><p>Advanced long multi-column addition/subtraction systems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Multiplication</h4><p>Multi-digit multiplication across 2-digit factor lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Division</h4><p>Divide 4-digit values using long 2-digit steps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Exponents</h4><p>Bases and exponent notation evaluation for powers of 10.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Decimals properties</h4><p>Round decimals to tenth, hundredth, thousandth indices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Add & subtract decimals</h4><p>Column alignments rules for multi-step decimal models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Multiply decimals</h4><p>Decimals multiplied by whole integers or decimal factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Divide decimals</h4><p>Terminating or repeating decimal outputs divisions tracking.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Mixed decimal steps</h4><p>Word problems tracking mixed decimal operational formats.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Fractions properties</h4><p>Reduce target tracking fractions, calculate fraction sizes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Add & subtract fractions</h4><p>Least Common Denominators metrics mapping for balances.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Multiply fractions</h4><p>Multiply pairs of proper, improper, mixed fraction types.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Divide fractions</h4><p>Fractions divided by integers variables and vice versa.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Mixed operations</h4><p>Order of operations with mixed numbers profiles indicators.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Problem solving</h4><p>Backwards data modeling and logical trial arrays tracks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Coordinate plane axis</h4><p>Plot coordinate pairs ($x$, $y$) across Quadrant 1 fields.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Data & graphs</h4><p>Analyze trends inside line charts and scatter matrices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Variable expressions</h4><p>Formulate and simplify algebraic variable statements steps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Measurement</h4><p>Multi-unit structural conversions for measurement maps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Geometric metrics</h4><p>Cubic formulas metrics for prism volumetric profiles.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> 2D shapes parsing</h4><p>Classify triangles profiles and quadrilaterals dimensions.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">X</span> 3D shapes attributes</h4><p>Count faces, edges, vertices on polyhedrons blocks.</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADE 6 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g6-grade')">🎒 Grade 6 Complete Track (A to X) <span>+</span></div>
-            <div id="g6-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Whole numbers</h4><p>Place values grids, calculation estimation parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Multiplication</h4><p>Large values multiplication with verification algorithms.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Division fluency</h4><p>Multi-digit long division without counting logs widgets.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Number theory</h4><p>Prime factoring graphs, common multiples/factors arrays.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Decimals tracking</h4><p>Advanced multi-tier decimal arithmetic problem structures.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Fractions properties</h4><p>Reciprocals, transformation scaling metrics for fractions.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Add & subtract fractions</h4><p>Fractions combined across whole units word models problems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Multiply fractions</h4><p>Area grid algorithms with fractional parameter factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Divide fractions</h4><p>Multi-step fraction division rules execution logs codes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Integers logs</h4><p>Absolute values, integer ordering across line indicators.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Rational numbers</h4><p>Compare fractions, decimals, integers sets simultaneously.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Operations - integers</h4><p>Arithmetic expressions containing signed value profiles sets.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Mixed operations</h4><p>PEMDAS order evaluations containing deep brace layers.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Ratios & rates</h4><p>Ratio statements configurations, unit rate cost metrics analysis.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Percentages</h4><p>Transformations across fraction, decimal, percentage forms.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Measurement units</h4><p>Dimensional tracking analytics for multi-unit system maps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Money tracking</h4><p>Solve consumer bank ledger calculations problem parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Coordinate plane axis</h4><p>Plot coordinates points across all 4 space sectors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Expressions traits</h4><p>Formulate variable terms, evaluate structural parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> 1-variable equations</h4><p>Single-step linear equation balances across variable sets.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> 1-variable inequalities</h4><p>Graph variable inequalities onto line direction pointers.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> 2-variable relationships</h4><p>Isolate independent and dependent parameter designations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> Geometric metrics</h4><p>Area of composite plane regions, triangle/polygon fields.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">X</span> Data & graphs</h4><p>Box plots construction, calculate Mean Absolute Deviations.</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADE 7 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g7-grade')">📊 Grade 7 Complete Track (A to X) <span>+</span></div>
-            <div id="g7-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Number theory</h4><p>Classify logical numeric groupings, check divisibility criteria.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Integers tracking</h4><p>Multi-step calculation chains combining signed factors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Operations - integers</h4><p>Fluency integer equations models carrying positive/negative marks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Decimals tracking</h4><p>Terminating/repeating fraction metrics conversion checks loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Fractions mastery</h4><p>Arithmetic operations sequences involving signed rational parts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Rational numbers</h4><p>Compute multi-step combinations with rational variable elements.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Exponents & roots</h4><p>Perfect squares, square root estimation algorithms processes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Ratios & proportions</h4><p>Proportions metrics solutions using cross-multiplication models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Proportional links</h4><p>Extract constant of proportionality directly from standard plots.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Percents applications</h4><p>Tax, interest formulas, discount parameters tracking loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Consumer math</h4><p>Ledger balances, unit markups tracking metrics profiles logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Problem solving</h4><p>Multi-tier operational logic blocks scheduling tracks models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Conversions tracking</h4><p>Rate conversions tracking parameters for density variables scales.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Maps & scale factors</h4><p>Scale drawings layouts, blueprint tracking metrics applications.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Data & graphs</h4><p>Stem/leaf charts analysis, evaluate circle percentage charts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Probability setup</h4><p>Independent vs. dependent likelihood combinations matrices logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Statistics analytics</h4><p>Sample size tracking evaluations, remove analytical sample bias.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Variable expressions</h4><p>Simplify expressions profiles by combining like terms matrices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Linear equations</h4><p>Two-step linear parameter balances ($ax + b = c$) models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Linear inequalities</h4><p>Solve and graph multi-tier inequality statements arrays sets.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> 2-variable links</h4><p>Map variable linear links straight from operational tables data.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Geometric concepts</h4><p>Complementary, supplementary, vertical angle tracking structures.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> 2D plane figures</h4><p>Calculate circle area, boundary circumference tracking parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">X</span> 3D spatial figures</h4><p>Prisms, cylinders surface areas and volumetric space formulas.</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADE 8 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g8-grade')">📐 Grade 8 Complete Track (A to R) <span>+</span></div>
-            <div id="g8-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Number sense</h4><p>Convert repeating decimal lines to fractions, identify irrationals.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Exponents tracking</h4><p>Product, quotient, power parameters rules for exponential expressions.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Scientific notation</h4><p>Arithmetic operation statements processing scientific scale models.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Squares and roots</h4><p>Plot approximate radical locations along standard linear maps.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Cube roots</h4><p>Perfect cubes decomposition, volumetric root bounds evaluations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Ratios & proportions</h4><p>Compare scaling ratios variations directly over tracking grids.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Proportional equations</h4><p>Graph proportions, extract unit rates as line slope ($\mathit{m}$) metrics.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Linear functions</h4><p>Formulate line profiles inside Slope-Intercept paths ($\mathit{y} = \mathit{mx} + \mathit{b}$).</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Analyze functions</h4><p>Evaluate input tracking loops to identify linear function sets.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Systems of equations</h4><p>Solve multi-line variable setups via coordinate plotting layouts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Solve linear equations</h4><p>Balance equations holding target variable parts on both sides.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Transformations 2D</h4><p>Translations, rotations, reflections over tracking map vectors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Dilations & scale factor</h4><p>Scale geometric profiles using variable expansion factor centers.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Congruence & similarity</h4><p>Verify matching shapes states following rigid transformation loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Angle relationships</h4><p>Interior/exterior triangle angles rules, transversal intersection structures.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Pythagorean Theorem</h4><p>Right-triangle hypotenuse calculation, verify converse spatial limits.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> 3D Volumetric scaling</h4><p>Spheres, cones, cylinders space calculation tracking parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Scatter plots and charts</h4><p>Map trend lines of best fit, analyze data outlier cluster logs.</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GRADE 9 / ALGEBRA 1 -->
-        <div class="grade-accordion">
-            <div class="grade-header" onclick="toggleGrade('g9-grade')">🚀 Grade 9 / Algebra 1 Complete Track (A to QQ) <span>+</span></div>
-            <div id="g9-grade" class="grade-content">
-                <div class="skills-grid">
-                    <div class="skill-category"><h4><span class="letter-badge">A</span> Numbers and operations</h4><p>Rational and irrational properties review across tracking systems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">B</span> Ratios, rates, percentages</h4><p>Multi-step unit rates, percentage dimensional tracking benchmarks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">C</span> Variable expressions</h4><p>Evaluate advanced expressions containing signed rational parts.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">D</span> Equations & structures</h4><p>Isolate target multi-variable terms within complex literal formulas.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">E</span> Linear inequalities</h4><p>Solve multi-step linear inequalities, define compound intervals.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">F</span> Absolute value equations</h4><p>Evaluate boundaries for absolute variable structural configurations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">G</span> Analytical relationships</h4><p>Map functional domain and range bounds straight from plane plots.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">H</span> Linear functions properties</h4><p>Extract axis intercepts and rate-of-change slope ($\mathit{m}$) metrics values.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">I</span> Write linear equations</h4><p>Point-Slope, Slope-Intercept, and Standard Form structural lines.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">J</span> Graph linear equations</h4><p>Plot coordinate linear lines, evaluate function matching systems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">K</span> Linear inequalities graph</h4><p>Shade matching half-plane vector spaces for inequality thresholds.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">L</span> Systems of equations</h4><p>Compute 2-variable system roots using Substitution and Elimination loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">M</span> Systems of inequalities</h4><p>Determine feasible region boundaries for bounding linear matrices arrays.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">N</span> Exponent rules matrix</h4><p>Simplify expressions holding negative and fractional power properties.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">O</span> Monomial expressions</h4><p>Multiply/divide large monomial variables chains cleanly.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">P</span> Polynomial operations</h4><p>Add, subtract, and multiply complex multi-term polynomial fields.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Q</span> Factoring strategies</h4><p>Factor out common elements, differences of squares, trinomial distributions.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">R</span> Quadratic equations</h4><p>Solve quadratics via Factoring, Square Roots, or the Quadratic Formula.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">S</span> Functions analysis</h4><p>Graphical shifting transformations for quadratic and linear tracks scales.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">T</span> Exponential models</h4><p>Evaluate compound financial growth and exponential decay tracking parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">U</span> Radical expressions</h4><p>Rationalize denominators, compute operations with radical indices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">V</span> Rational functions</h4><p>Simplify, add, multiply complex algebraic rational equations blocks.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">W</span> Data distributions</h4><p>Variance metrics tracking, standard deviation, and best fit data correlations.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">X</span> Matrices introduction</h4><p>Identify matrix rows, columns, and track basic vocabulary codes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Y</span> Matrix arithmetic</h4><p>Compute matrix addition, subtraction, and tracking scalar loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">Z</span> Matrix multiplication</h4><p>Multiply rows by columns for multi-dimensional matrix structures.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">AA</span> Logarithms evaluation</h4><p>Convert terms between exponential forms and logarithmic balance states.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">BB</span> Direct variation properties</h4><p>Formulate direct variation models ($y = kx$), calculate variation constants.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">CC</span> Inverse variation equations</h4><p>Graph inverse variations graphs, evaluate parameter outputs sizes.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">DD</span> Joint variation models</h4><p>Solve real-world problems combining multiple tracking variation loops.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">EE</span> Probability distributions</h4><p>Construct frequency tables for discrete probability tracking events.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">FF</span> Trigonometry ratios basics</h4><p>Sine, Cosine, and Tangent geometric configurations inside right vectors.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">GG</span> Rational exponents laws</h4><p>Laws of exponents applied straight onto rational power profiles indices.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">HH</span> Statistical tracking tools</h4><p>Analyze margin of error scales inside statistical sampling logs.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">II</span> Sequences parameters sets</h4><p>Explicit versus recursive sequence formula tracking parameter indicators.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">JJ</span> Piecewise function plots</h4><p>Graph step functions and evaluate piecewise linear threshold systems.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">KK</span> Conic sections parsing</h4><p>Identify circular and basic parabolic focal configurations maps traces.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">LL</span> Permutations math analysis</h4><p>Calculate unique ordering combinations configurations via factorial parameters.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">MM</span> Combinations metrics lines</h4><p>Subset selection counting tracks completely ignoring item order properties.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">NN</span> Complex numbers system</h4><p>Arithmetic execution loops containing imaginary unit parts ($i = \sqrt{-1}$).</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">OO</span> Operations - complex parts</h4><p>Multiply and simplify polynomial forms carrying complex parameters fields.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">PP</span> Rational variable roots</h4><p>Apply Rational Root Theorem rules to evaluate higher-order equation roots.</p></div>
-                    <div class="skill-category"><h4><span class="letter-badge">QQ</span> Algebraic proofs parameters</h4><p>Step-by-step validation checking for axiomatic equality tracking systems.</p></div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        function toggleGrade(id) {
-            const content = document.getElementById(id);
-            const header = content.previousElementSibling;
+    <!-- Tier 1: Kindergarten Foundations -->
+    <div class="grade-accordion">
+        <button class="grade-header">Kindergarten & Primary Foundations</button>
+        <div class="grade-content">
+            <div class="syllabus-grid">
+                <div class="category-card">
+                    <div class="category-title">Counting & Number Recognition <span class="category-range">A - D</span></div>
+                    <ul class="skills-list">
+                        <li>Identify, represent, and write numbers up to 20</li>
+                        <li>Count structures sequentially up to 100 by ones and tens</li>
+                        <li>Skip-counting patterns and sequence completions</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Base Calculations & Operations <span class="category-range">E - L</span></div>
+                    <ul class="skills-list">
+                        <li>Introductory addition and subtraction concepts</li>
+                        <li>Word problems utilizing visual mathematical aids</li>
+                        <li>Comparing magnitude values and structural group sizes</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Spatial Geometry & Data Tiers <span class="category-range">M - W</span></div>
+                    <ul class="skills-list">
+                        <li>Differentiating 2D and 3D shapes accurately</li>
+                        <li>Sorting and classifying objects based on distinct metrics</li>
+                        <li>Basic measurement properties (length, height, weight)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tier 2: Elementary Core -->
+    <div class="grade-accordion">
+        <button class="grade-header">Elementary Proficiency (Grades 1 - 5)</button>
+        <div class="grade-content">
+            <div class="syllabus-grid">
+                <div class="category-card">
+                    <div class="category-title">Whole Numbers & Computations <span class="category-range">A - I</span></div>
+                    <ul class="skills-list">
+                        <li>Multi-digit structural operations (Addition and Subtraction)</li>
+                        <li>Advanced multiplication strategies and long division proofs</li>
+                        <li>Operational attributes and estimation checking tools</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Fractions & Decimal Metrics <span class="category-range">J - T</span></div>
+                    <ul class="skills-list">
+                        <li>Identifying equivalent fractions and scaling systems</li>
+                        <li>Decimal values, comparative orders, and percent steps</li>
+                        <li>Real-world money problems and metric measurements</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Measurement, Data & Shapes <span class="category-range">U - ZZ</span></div>
+                    <ul class="skills-list">
+                        <li>Calculating area, complex perimeters, and solid volumes</li>
+                        <li>Plotting points across 2D coordinate grid structures</li>
+                        <li>Analyzing basic angular layouts and graphic chart representations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tier 3: Middle School Mastery -->
+    <div class="grade-accordion">
+        <button class="grade-header">Middle School Competency (Grades 6 - 8)</button>
+        <div class="grade-content">
+            <div class="syllabus-grid">
+                <div class="category-card">
+                    <div class="category-title">Number Theory, Ratios & Rates <span class="category-range">A - K</span></div>
+                    <ul class="skills-list">
+                        <li>Integers, rational numbers, and absolute value frameworks</li>
+                        <li>Proportional systems, rates, scales, and percentages</li>
+                        <li>Factors, multiples, divisibility, and prime factorization</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Expressions & Variable Equations <span class="category-range">L - Z</span></div>
+                    <ul class="skills-list">
+                        <li>Evaluating variable-based algebraic expressions</li>
+                        <li>Solving multi-step expressions and compound inequalities</li>
+                        <li>Graphing independent and dependent linear properties</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Geometry Proofs & Probability <span class="category-range">AA - OO</span></div>
+                    <ul class="skills-list">
+                        <li>Applying Pythagorean Theorem properties to coordinate models</li>
+                        <li>Surface area and volume metrics of cylinders, cones, and spheres</li>
+                        <li>Statistical distributions, compound probability, and data mapping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tier 4: Algebra 1 Advanced -->
+    <div class="grade-accordion">
+        <button class="grade-header">Algebra 1 (Advanced Tier Progression)</button>
+        <div class="grade-content">
+            <div class="syllabus-grid">
+                <div class="category-card">
+                    <div class="category-title">Real Numbers & Linear Logic <span class="category-range">A - J</span></div>
+                    <ul class="skills-list">
+                        <li>Real number matrix interactions and absolute properties</li>
+                        <li>Solving, graphing, and analyzing single-variable linear configurations</li>
+                        <li>Applying multi-variable functions and relational inequalities</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Systems & Functional Slopes <span class="category-range">K - Z</span></div>
+                    <ul class="skills-list">
+                        <li>Mastering slope variations, intercept points, and transformations</li>
+                        <li>Solving structural systems of equations via matrices and elimination</li>
+                        <li>Advanced exponents, scientific notations, and operations</li>
+                    </ul>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Polynomials & Advanced Functions <span class="category-range">AA - QQ</span></div>
+                    <ul class="skills-list">
+                        <li>Factoring complex polynomials and solving quadratic functions</li>
+                        <li>Radical transformations, rational rules, and absolute curves</li>
+                        <li>Introduction to functional variations, matrices, and logarithms</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">← Back to Main Page</a>
+</div>
+
+<script>
+    document.querySelectorAll('.grade-header').forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+            const content = button.nextElementSibling;
             
-            if (content.style.display === "block") {
-                content.style.display = "none";
-                header.querySelector('span').innerText = "+";
+            if (button.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
             } else {
-                content.style.display = "block";
-                header.querySelector('span').innerText = "-";
+                content.style.maxHeight = "0";
             }
-        }
-    </script>
+        });
+    });
+</script>
+
 </body>
 </html>
