@@ -7,7 +7,7 @@
     <meta name="keywords" content="Atharv Gupta, Apex Math Academy, math tutor, tutoring, math academy">
     <link rel="canonical" href="https://atharvthescienceman.github.io/ApexMathAcademy/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Math Academy | Global tutoring</title>
+    <title>Apex Math Academy</title>
     <style>
         /* Modern Design Framework */
         :root {
@@ -197,6 +197,78 @@
             max-width: 800px;
             margin: 0 auto;
             font-weight: 500;
+        }
+
+        /* Tutor Profile Section Styling */
+        .tutor-section {
+            margin-top: 5rem;
+            border-top: 2px dashed var(--border);
+            padding-top: 4rem;
+        }
+
+        .tutor-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .tutor-title-group h3 {
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        .tutor-subtitle {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tutor-list-title {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .tutor-info-list {
+            list-style: none;
+        }
+
+        .tutor-info-list li {
+            padding: 0.25rem 0;
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .tutor-info-list li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .tutor-quote {
+            font-style: italic;
+            background: var(--light);
+            padding: 1rem 1.5rem;
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+            color: #4b5563;
+            margin-top: 1.5rem;
         }
 
         /* Packages Cards Grid */
@@ -414,10 +486,14 @@
             font-size: 0.9rem;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .split-row {
                 grid-template-columns: 1fr;
                 gap: 0;
+            }
+            .tutor-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
     </style>
@@ -462,7 +538,6 @@
                 <h2>Premium Local Math Tutoring</h2>
                 <p style="margin: 1.5rem 0;">Welcome to Apex Math Academy, where neighborhood students unlock their true academic potential. We specialize in transforming math stress into structural understanding, confidence, and top-tier school results.</p>
                 <p>From essential homework support to advanced summer prep routines, our flexible paths fit perfectly into your family's schedule.</p>
-                <!-- ADDED SYLLABUS ROUTER LINK -->
                 <a href="syllabus.html" class="syllabus-link-btn">📋 View Academic Syllabus (Grades K-9) →</a>
             </div>
             <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8M3x8c3R1ZHlpbmclMjBtYXRolGVufDB8fHx8MTY3ODg5NTg5OA&ixlib=rb-4.0.3&q=80&w=800" alt="Student happily writing math notes" class="real-img">
@@ -477,13 +552,46 @@
             <div>
                 <h3>Our Vision & Approach</h3>
                 <p style="margin: 1rem 0;">We believe that core math mastery shouldn't feel like a chore. By utilizing small-group metrics and intuitive, personalized instruction, we bridge the gap between dry textbook formulas and real conceptual breakthroughs.</p>
-                <ul>
+                <ul style="list-style-position: inside; margin-bottom: 1rem;">
                     <li><strong>Peer-Level Support:</strong> Highly relatable, focused, and stress-free interaction.</li>
                     <li><strong>Flexible Frameworks:</strong> Pay-as-you-go sessions or structured summer plans.</li>
                     <li><strong>Targeted Tracking:</strong> Focused directly on boosting school grade standards.</li>
                 </ul>
-                <!-- ADDED SYLLABUS ROUTER LINK -->
                 <a href="syllabus.html" class="syllabus-link-btn">📋 View Academic Syllabus (Grades K-9) →</a>
+            </div>
+        </div>
+
+        <!-- NEWLY ADDED: MEET OUR TUTORS SECTION -->
+        <div class="tutor-section">
+            <h2 class="section-title">Meet Our Leadership</h2>
+            <div class="tutor-card">
+                <div class="tutor-title-group">
+                    <h3>Atharv Gupta</h3>
+                    <div class="tutor-subtitle">Founder & Lead Instructor</div>
+                </div>
+                
+                <div class="tutor-grid">
+                    <div>
+                        <div class="tutor-list-title">🎯 Specialties</div>
+                        <ul class="tutor-info-list">
+                            <li>Algebra</li>
+                            <li>Pre-Algebra</li>
+                            <li>Competition Math</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="tutor-list-title">🎓 Academic Background</div>
+                        <ul class="tutor-info-list">
+                            <li>Honors student</li>
+                            <li>Advanced mathematics coursework</li>
+                            <li>NJHS member</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tutor-quote">
+                    <strong>Teaching Philosophy:</strong> "I believe every student can learn math when concepts are explained clearly."
+                </div>
             </div>
         </div>
     </section>
@@ -492,7 +600,6 @@
     <section id="packages" class="tab-content">
         <h2 class="section-title">Transparent, Flexible Pricing Plans</h2>
         <p style="text-align: center; margin-top: -2rem; margin-bottom: 1.5rem;">
-            <!-- ADDED SYLLABUS ROUTER LINK -->
             <a href="syllabus.html" class="syllabus-link-btn">📋 View Our Curriculum Syllabus Breakdowns by Grade →</a>
         </p>
         <div class="pricing-grid">
@@ -582,7 +689,7 @@
                 <div id="tutor-bio-box" class="tutor-profile-box" style="display: none;">
                     <div class="tutor-header">👤 Meet Your Instructor: Atharv Gupta</div>
                     <p class="tutor-paragraph">
-                       Founded by Atharv Gupta, an advanced mathematics student passionate about helping younger students master difficult concepts. Currently mastering advanced 11th-grade mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring.
+                        Atharv is a 14-year-old high school honors student who possesses a profound love for mathematics and peer academic development. Currently mastering advanced 11th-grade mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring.
                     </p>
                 </div>
             </div>
