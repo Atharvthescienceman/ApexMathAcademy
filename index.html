@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-   
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="google98687e5d364ebc6c" />
@@ -293,14 +292,12 @@
             justify-content: space-between;
         }
 
-        /* HIGHLIGHT THE MIDDLE ONE (MOST POPULAR) */
         .card.popular {
             border-top-color: var(--secondary);
             transform: scale(1.03);
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* PREMIUM STYLING FOR THE GRAND ELITE BEST VALUE */
         .card.elite-value {
             border-top-color: var(--accent);
             background: linear-gradient(to bottom, #ffffff, #fffdf5);
@@ -390,7 +387,6 @@
             gap: 1.5rem;
         }
 
-        /* BEAUTIFUL DYNAMIC TUTOR PROFILE BOX */
         .tutor-profile-box {
             background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
             border: 2px solid #22d3ee;
@@ -448,7 +444,6 @@
             margin-top: 1rem;
         }
 
-        /* Toggle Button Container for Jobs/Volunteer */
         .toggle-container {
             display: flex;
             justify-content: center;
@@ -501,24 +496,22 @@
 </head>
 <body>
 
-    <!-- Top Impact Header Notice Bar -->
     <div class="charity-top-bar">
         ❤️ MISSION DRIVEN: 40% OF ALL ACADEMY TUTORING PROFITS GO DIRECTLY TO LOCAL CHARITIES
     </div>
 
-    <!-- Professional Navigation Grid Tabs -->
     <nav>
         <div class="logo">📐 Apex Math Academy</div>
         <ul class="nav-links">
             <li><a onclick="switchTab('home')" id="tab-home" class="active">Home</a></li>
             <li><a onclick="switchTab('about')" id="tab-about">About</a></li>
             <li><a onclick="switchTab('packages')" id="tab-packages">Packages</a></li>
+            <li><a onclick="switchTab('contact')" id="tab-contact">Sign Up</a></li>
             <li><a onclick="switchTab('jobs')" id="tab-jobs">Join Team</a></li>
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
     </nav>
 
-    <!-- Interactive Hero Section -->
     <header class="hero">
         <h1>Apex Math Academy</h1>
         <p>Climb Higher. Count on Success.</p>
@@ -547,7 +540,6 @@
 
     <!-- TAB 2: ABOUT -->
     <section id="about" class="tab-content">
-        <h2 class="section-title">Why Choose Apex?</h2>
         <div class="grid-2">
             <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8dHV0b3Jpbmd8ZW58MHx8fHwxNjc4ODk1ODk4&ixlib=rb-4.0.3&q=80&w=800" alt="Friendly math explanation on a tablet" class="real-img">
             <div>
@@ -562,7 +554,6 @@
             </div>
         </div>
 
-        <!-- NEWLY ADDED: MEET OUR TUTORS SECTION -->
         <div class="tutor-section">
             <h2 class="section-title">Meet Our Leadership</h2>
             <div class="tutor-card">
@@ -663,12 +654,14 @@
         </div>
     </section>
 
-    <!-- TAB 4: CONTACT & SIGN UP -->
+    <!-- TAB 4: SIGN UP TAB -->
     <section id="contact" class="tab-content">
         <h2 class="section-title">Secure Your Seat at Apex</h2>
-        <p style="text-align:center; margin-bottom: 2rem;">Fill out this simple form, and we will contact you within 24 hours to finalize your student's schedule.</p>
+        <p style="text-align:center; margin-bottom: 2rem;">Fill out this registration framework to secure an active tutoring track block.</p>
         
         <form action="https://formspree.io/f/xvzeaawj" method="POST">
+            <input type="hidden" name="Submission Intent" value="Official Student Sign Up Request">
+            
             <div class="form-group">
                 <label for="parent-name">Parent / Guardian Name</label>
                 <input type="text" id="parent-name" name="Parent Name" required placeholder="John Doe">
@@ -690,7 +683,7 @@
                 <div id="tutor-bio-box" class="tutor-profile-box" style="display: none;">
                     <div class="tutor-header">👤 Meet Your Instructor: Atharv Gupta</div>
                     <p class="tutor-paragraph">
-                        Atharv is a 14-year-old high school honors student who possesses a profound love for mathematics and peer academic development. Currently mastering advanced 11th-grade mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring.
+                        Atharv is a 14-year-old high school honors student specializing in Algebra, Pre-Algebra, and competition mathematics. His high-energy peer-level communication approach builds solid foundational confidence.
                     </p>
                 </div>
             </div>
@@ -725,7 +718,7 @@
         </form>
     </section>
 
-    <!-- TAB 5: JOBS / TEAM APPLICATIONS -->
+    <!-- TAB 5: JOBS -->
     <section id="jobs" class="tab-content">
         <h2 class="section-title">Join Our Elite Team</h2>
         
@@ -847,7 +840,6 @@
         <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
     </footer>
 
-    <!-- Interactive Navigation & Bio UI Logic Script -->
     <script>
         function switchTab(tabId) {
             const contents = document.querySelectorAll('.tab-content');
