@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Sign Up | Apex Math Academy</title>
+    <title>Contact Us | Apex Math Academy</title>
     <style>
         :root {
             --primary: #1e3a8a;
@@ -12,8 +12,6 @@
             --light: #f9fafb;
             --white: #ffffff;
             --border: #e5e7eb;
-            --heart: #e11d48;
-            --accent: #f59e0b;
         }
 
         * {
@@ -86,11 +84,10 @@
             margin: 4rem auto;
             padding: 0 5%;
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
+            grid-template-columns: 1fr 1.3fr;
             gap: 4rem;
         }
 
-        /* Left Side: Contact Information Cards */
         .contact-info {
             display: flex;
             flex-direction: column;
@@ -108,9 +105,6 @@
         .info-card h3 {
             color: var(--primary);
             margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .info-card p {
@@ -124,39 +118,16 @@
             font-weight: 600;
         }
 
-        /* Toggle Container for Form Type */
-        .form-toggle {
-            display: flex;
-            background: #e5e7eb;
-            padding: 4px;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .toggle-btn {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            background: transparent;
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--dark);
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        .toggle-btn.active {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        /* Right Side: Form Wrapper */
         .form-wrapper {
             background: var(--white);
             padding: 3rem;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-wrapper h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -169,26 +140,12 @@
             font-weight: 600;
         }
 
-        .form-group input, .form-group select, .form-group textarea {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #d1d5db;
             border-radius: 4px;
             font-size: 1rem;
-        }
-
-        .tutor-profile-box {
-            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
-            border: 2px solid #22d3ee;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .tutor-header {
-            color: #0891b2;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
         }
 
         .cta-btn {
@@ -222,128 +179,73 @@
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
-            .form-wrapper {
-                padding: 2rem;
-            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Professional Navigation Grid Links -->
     <nav>
         <a href="index.html" class="logo">📐 Apex Math Academy</a>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html?tab=about">About</a></li>
             <li><a href="index.html?tab=packages">Packages</a></li>
+            <li><a href="index.html?tab=contact">Sign Up</a></li>
             <li><a href="index.html?tab=jobs">Join Team</a></li>
-            <li><a href="contact.html" class="active">Contact & Sign Up</a></li>
+            <li><a href="contact.html" class="active">Contact Us</a></li>
         </ul>
     </nav>
 
     <header>
-        <h1>Connect With Us</h1>
-        <p>Send a general question or register your student for an academic block today.</p>
+        <h1>General Inquiry</h1>
+        <p>Have questions about classes, custom pacing, or scheduling alternatives? Reach out anytime.</p>
     </header>
 
     <div class="contact-container">
         
-        <!-- Left Column: Direct Info -->
         <div class="contact-info">
             <div class="info-card">
                 <h3>📞 Call or Text</h3>
                 <p><a href="tel:7324965250">(732) 496-5250</a></p>
-                <p style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">Reach out directly with questions regarding schedules, tutoring options, or curriculum tracks.</p>
             </div>
 
             <div class="info-card">
-                <h3>✉️ Email Channels</h3>
+                <h3>✉️ Direct Email</h3>
                 <p><a href="mailto:atharvthescienceman@gmail.com">atharvthescienceman@gmail.com</a></p>
             </div>
 
             <div class="info-card">
-                <h3>📍 Academic Coverage</h3>
-                <p>Local custom group schedules and interactive private 1-on-1 pathways.</p>
+                <h3>📍 Support Range</h3>
+                <p>Providing local custom cohort configurations and premium private options.</p>
             </div>
         </div>
 
-        <!-- Right Column: Interactive Form -->
         <div class="form-wrapper">
-            
-            <!-- Dynamic Choice Bar -->
-            <div class="form-toggle">
-                <button type="button" id="btn-inquiry" class="toggle-btn active" onclick="switchForm('inquiry')">✉️ General Question</button>
-                <button type="button" id="btn-signup" class="toggle-btn" onclick="switchForm('signup')">📝 Student Sign Up</button>
-            </div>
-
+            <h2>Send General Message</h2>
             <form action="https://formspree.io/f/xvzeaawj" method="POST">
-                <!-- Tracks the exact context for your Formspree dashboard notifications -->
-                <input type="hidden" id="form-intent" name="Form Purpose" value="General Inquiry / Question">
-
+                <input type="hidden" name="Inquiry Classification" value="General Contact Question">
+                
                 <div class="form-group">
-                    <label for="parent-name">Parent / Guardian Name</label>
-                    <input type="text" id="parent-name" name="Parent Name" required placeholder="John Doe">
+                    <label for="c-name">Your Full Name</label>
+                    <input type="text" id="c-name" name="Sender Name" required placeholder="John Doe">
                 </div>
                 
                 <div class="form-group">
-                    <label for="parent-email">Email Address</label>
-                    <input type="email" id="parent-email" name="Parent Email" required placeholder="johndoe@example.com">
+                    <label for="c-email">Email Address</label>
+                    <input type="email" id="c-email" name="Sender Email" required placeholder="johndoe@example.com">
                 </div>
 
                 <div class="form-group">
-                    <label for="parent-phone">Phone Number</label>
-                    <input type="tel" id="parent-phone" name="Parent Phone Number" required placeholder="(123) 456-7890">
-                </div>
-
-                <!-- SIGNUP SPECIFIC EXTENSIONS (Hidden by default, shown via active toggle) -->
-                <div id="signup-fields" style="display: none;">
-                    <div class="form-group">
-                        <label for="tutor-select">Select Your Instructor</label>
-                        <select id="tutor-select" name="Selected Tutor" onchange="toggleTutorBio(this.value)">
-                            <option value="">-- Click to Choose a Tutor --</option>
-                            <option value="atharv">Atharv Gupta (Founder & Core Instructor)</option>
-                        </select>
-                        <div id="tutor-bio-box" class="tutor-profile-box" style="display: none;">
-                            <div class="tutor-header">👤 Meet Your Instructor: Atharv Gupta</div>
-                            <p style="font-size: 0.95rem; color: #164e63;">
-                                Atharv is an honors student specializing in Algebra, Pre-Algebra, and competitive problem-solving. As an active NJHS leader, his relatable, clear method builds high concept confidence.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="student-grade">Student's Current Grade Level</label>
-                        <select id="student-grade" name="Student Grade Level">
-                            <option>Middle School (Grades 6-8)</option>
-                            <option>High School Freshman (Grade 9)</option>
-                            <option>Other / Elementary</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="package-choice">Desired Academic Package</label>
-                        <select id="package-choice" name="Selected Plan Package">
-                            <optgroup label="Standard Group Classes">
-                                <option>Drop-In Flex (Group: $12/class)</option>
-                                <option>Summer Booster (Group: $10/class)</option>
-                                <option>The Grand Elite (Group: $309.99/season)</option>
-                            </optgroup>
-                            <optgroup label="Premium Private 1-on-1 Sessions">
-                                <option>Drop-In Flex (Private: $17/class)</option>
-                                <option>Summer Booster (Private: $15/class)</option>
-                                <option>The Grand Elite (Private: $450.00/season)</option>
-                            </optgroup>
-                        </select>
-                    </div>
+                    <label for="c-phone">Phone Number (Optional)</label>
+                    <input type="tel" id="c-phone" name="Sender Phone" placeholder="(123) 456-7890">
                 </div>
 
                 <div class="form-group">
-                    <label id="message-label" for="notes">Your Message / Questions</label>
-                    <textarea id="notes" name="Message Content" rows="5" required placeholder="How can we help your student succeed?"></textarea>
+                    <label for="c-message">Your Message</label>
+                    <textarea id="c-message" name="Message Content" rows="5" required placeholder="Ask your question here..."></textarea>
                 </div>
 
-                <button type="submit" id="submit-btn" class="cta-btn">Send General Question</button>
+                <button type="submit" class="cta-btn">Send Message</button>
             </form>
         </div>
 
@@ -352,44 +254,6 @@
     <footer>
         <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
     </footer>
-
-    <script>
-        function switchForm(mode) {
-            const btnInquiry = document.getElementById('btn-inquiry');
-            const btnSignup = document.getElementById('btn-signup');
-            const signupFields = document.getElementById('signup-fields');
-            const formIntent = document.getElementById('form-intent');
-            const messageLabel = document.getElementById('message-label');
-            const submitBtn = document.getElementById('submit-btn');
-            
-            const tutorSelect = document.getElementById('tutor-select');
-
-            if (mode === 'signup') {
-                btnInquiry.classList.remove('active');
-                btnSignup.classList.add('active');
-                signupFields.style.display = 'block';
-                tutorSelect.required = true;
-                formIntent.value = "Official Student Registration Sign Up";
-                messageLabel.innerText = "Specific Math Areas Needing Help (Optional)";
-                submitBtn.innerText = "Submit Registration Request";
-                submitBtn.style.backgroundColor = "var(--primary)";
-            } else {
-                btnInquiry.classList.add('active');
-                btnSignup.classList.remove('active');
-                signupFields.style.display = 'none';
-                tutorSelect.required = false;
-                formIntent.value = "General Inquiry / Question";
-                messageLabel.innerText = "Your Message / Questions";
-                submitBtn.innerText = "Send General Question";
-                submitBtn.style.backgroundColor = "var(--secondary)";
-            }
-        }
-
-        function toggleTutorBio(selectedValue) {
-            const bioBox = document.getElementById('tutor-bio-box');
-            bioBox.style.display = (selectedValue === 'atharv') ? 'block' : 'none';
-        }
-    </script>
 
 </body>
 </html>
