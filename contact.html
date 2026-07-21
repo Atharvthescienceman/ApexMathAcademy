@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Apex Math Academy</title>
 
+    <!-- Auto-Redirect to Home Page on Refresh -->
+    <script>
+        if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+            window.location.href = 'index.html';
+        }
+    </script>
+
     <!-- Professional Modern Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,7 +247,7 @@
         </div>
 
         <div class="form-wrapper">
-            2 Send General Message
+            <h2>Send General Message</h2>
             <form action="https://formspree.io/f/xvzeaawj" method="POST">
                 <input type="hidden" name="Inquiry Classification" value="General Contact Question">
                 
