@@ -898,105 +898,6 @@
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => link.classList.remove('active'));
 
-            document.getElementById(tabId).classList.add('active');
-            const navTab = document.getElementById('tab-' + tabId);
-            if (navTab) navTab.classList.add('active');
-
-            // Package Auto-Selection Logic
-            if (packagePreselect) {
-                const packageSelect = document.getElementById('package-choice');
-                if (packagePreselect === 'flex') {
-                    packageSelect.value = "Drop-In Flex (Group: $12/class)";
-                } else if (packagePreselect === 'booster') {
-                    packageSelect.value = "Summer Booster (Group: $10/class - MOST POPULAR)";
-                } else if (packagePreselect === 'elite') {
-                    packageSelect.value = "The Grand Elite (Group: $309.99/season Unlimited)";
-                }
-            }
-
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        function toggleTutorBio(selectedValue) {
-            const bioBox = document.getElementById('tutor-bio-box');
-            if (selectedValue === 'atharv') {
-                bioBox.style.display = 'block';
-            } else {
-                bioBox.style.display = 'none';
-            }
-        }
-
-        function checkAgeRequirement(ageValue) {
-            const guardianBox = document.getElementById('minor-guardian-section');
-            const gName = document.getElementById('g-name');
-            const gEmail = document.getElementById('g-email');
-            const gPhone = document.getElementById('g-phone');
-            
-            if (ageValue !== '' && parseInt(ageValue) < 18) {
-                guardianBox.style.display = 'block';
-                gName.required = true;
-                gEmail.required = true;
-                gPhone.required = true;
-            } else {
-                guardianBox.style.display = 'none';
-                gName.required = false;
-                gEmail.required = false;
-                gPhone.required = false;
-            }
-        }
-
-        function switchApplicationType(type) {
-            const paidBtn = document.getElementById('toggle-paid-btn');
-            const volunteerBtn = document.getElementById('toggle-volunteer-btn');
-            const paidReq = document.getElementById('paid-requirements');
-            const volunteerReq = document.getElementById('volunteer-requirements');
-            const trackerInput = document.getElementById('application-type-tracker');
-            const expLabel = document.getElementById('dynamic-experience-label');
-            const submitBtn = document.getElementById('submit-app-btn');
-
-            if (type === 'volunteer') {
-                paidBtn.classList.remove('active');
-                volunteerBtn.classList.add('active');
-                paidReq.style.display = 'none';
-                volunteerReq.style.display = 'block';
-                trackerInput.value = "Volunteer (Hours Tracking & Certificate)";
-                expLabel.innerText = "Why are you interested in volunteering at Apex Math Academy and earning certified service hours?";
-                submitBtn.style.backgroundColor = "#16a34a";
-            } else {
-                paidBtn.classList.add('active');
-                volunteerBtn.classList.remove('active');
-                paidReq.style.display = 'block';
-                volunteerReq.style.display = 'none';
-                trackerInput.value = "Paid Instructor ($12/hr)";
-                expLabel.innerText = "Do you have previous experience teaching, mentoring, or volunteering with kids?";
-                submitBtn.style.backgroundColor = "var(--secondary)";
-            }
-        }
-    </script>
-                    expLabel.innerText = "Why are you interested in volunteering at Apex Math Academy and earning certified service hours?";
-                submitBtn.style.backgroundColor = "#16a34a";
-            } else {
-                paidBtn.classList.add('active');
-                volunteerBtn.classList.remove('active');
-                paidReq.style.display = 'block';
-                volunteerReq.style.display = 'none';
-                trackerInput.value = "Paid Instructor ($12/hr)";
-                expLabel.innerText = "Do you have previous experience teaching, mentoring, or volunteering with kids?";
-                submitBtn.style.backgroundColor = "var(--secondary)";
-            }
-        }
-    </script>
-</body>
-</html>
-<!-- Interactive Navigation & Bio UI Logic Script -->
-    <script>
-        function switchTab(tabId, packagePreselect) {
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.classList.remove('active'));
-
-            const links = document.querySelectorAll('.nav-links a');
-            links.forEach(link => link.classList.remove('active'));
-
             const targetContent = document.getElementById(tabId);
             if (targetContent) targetContent.classList.add('active');
 
@@ -1075,11 +976,14 @@
         }
 
         // AUTO-OPEN TAB FROM URL PARAMETERS (e.g., index.html?tab=about)
+        // Default to 'home' if no parameter is provided
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const requestedTab = urlParams.get('tab');
             if (requestedTab) {
                 switchTab(requestedTab);
+            } else {
+                switchTab('home');
             }
         });
     </script>
