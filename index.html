@@ -422,6 +422,38 @@
             border-color: var(--primary-light);
         }
 
+        /* Form Button Group Layout */
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .form-actions button[type="submit"] {
+            flex: 2;
+        }
+
+        .clear-btn {
+            flex: 1;
+            background-color: transparent;
+            color: #64748b;
+            border: 1.5px solid #cbd5e1;
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .clear-btn:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
         .split-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -531,6 +563,12 @@
             }
             .hero h1 {
                 font-size: 2.3rem;
+            }
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+            .clear-btn, .form-actions button[type="submit"] {
+                width: 100%;
             }
         }
     </style>
@@ -758,7 +796,11 @@
                 <label for="notes">Targeted Math Topics & Academic Goals (Optional)</label>
                 <textarea id="notes" name="Parent Message Notes" rows="4" placeholder="Algebra, Geometry, test prep, etc."></textarea>
             </div>
-            <button type="submit" class="cta-btn" style="width:100%;">Submit Registration Request</button>
+            
+            <div class="form-actions">
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft('signup-form', 'apex_signup_draft')">Clear Form</button>
+                <button type="submit" class="cta-btn">Submit Registration Request</button>
+            </div>
         </form>
     </section>
 
@@ -881,7 +923,10 @@
                 <textarea id="app-experience" name="Experience or Program Motivation" rows="4" required placeholder="Detail any counselor experience, club participation, peer tutoring assignments..."></textarea>
             </div>
 
-            <button type="submit" id="submit-app-btn" class="cta-btn" style="width:100%; background-color: var(--secondary);">Submit Application to Apex Academy</button>
+            <div class="form-actions">
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft('team-form', 'apex_team_draft')">Clear Form</button>
+                <button type="submit" id="submit-app-btn" class="cta-btn" style="background-color: var(--secondary);">Submit Application to Apex Academy</button>
+            </div>
         </form>
     </section>
 
@@ -975,7 +1020,7 @@
             }
         }
 
-        // --- AUTOMATIC FORM DRAFT SAVER & RESTORER ---
+        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING ---
         function enableAutoSave(formId, storageKey) {
             const form = document.getElementById(formId);
             if (!form) return;
@@ -1010,6 +1055,16 @@
             form.addEventListener('submit', () => {
                 localStorage.removeItem(storageKey);
             });
+        }
+
+        function resetFormWithDraft(formId, storageKey) {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.reset();
+                localStorage.removeItem(storageKey);
+                toggleTutorBio('');
+                checkAgeRequirement('');
+            }
         }
 
         // Initialize Tab & Auto-Save
