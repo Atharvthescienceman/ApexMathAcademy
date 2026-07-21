@@ -454,8 +454,10 @@
             flex: 2;
         }
 
+        /* Seamless Cross-Fading Clear Button */
         .clear-btn {
             flex: 1;
+            position: relative;
             background-color: transparent;
             color: #64748b;
             border: 1.5px solid #cbd5e1;
@@ -464,14 +466,50 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.9s ease; /* Tripled fade duration */
             text-align: center;
+            transition: background-color 1s ease, border-color 1s ease, color 1s ease;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
         }
 
         .clear-btn:hover {
             background-color: #f1f5f9;
             color: #0f172a;
             border-color: #94a3b8;
+        }
+
+        /* Text Layer Cross-Fade Animation */
+        .clear-btn .text-default,
+        .clear-btn .text-cleared {
+            transition: opacity 1s ease;
+            white-space: nowrap;
+        }
+
+        .clear-btn .text-default {
+            opacity: 1;
+        }
+
+        .clear-btn .text-cleared {
+            position: absolute;
+            opacity: 0;
+        }
+
+        /* Triggered Active Green State */
+        .clear-btn.cleared-active {
+            background-color: #16a34a !important;
+            color: #ffffff !important;
+            border-color: #16a34a !important;
+        }
+
+        .clear-btn.cleared-active .text-default {
+            opacity: 0;
+        }
+
+        .clear-btn.cleared-active .text-cleared {
+            opacity: 1;
         }
 
         /* Contact Cards Layout inside Inquiry Tab */
@@ -858,7 +896,10 @@
             </div>
             
             <div class="form-actions">
-                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'signup-form', 'apex_signup_draft')">Clear Form</button>
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'signup-form', 'apex_signup_draft')">
+                    <span class="text-default">Clear Form</span>
+                    <span class="text-cleared">Form Cleared! ✓</span>
+                </button>
                 <button type="submit" class="cta-btn">Submit Registration Request</button>
             </div>
         </form>
@@ -984,7 +1025,10 @@
             </div>
 
             <div class="form-actions">
-                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'team-form', 'apex_team_draft')">Clear Form</button>
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'team-form', 'apex_team_draft')">
+                    <span class="text-default">Clear Form</span>
+                    <span class="text-cleared">Form Cleared! ✓</span>
+                </button>
                 <button type="submit" id="submit-app-btn" class="cta-btn" style="background-color: var(--secondary);">Submit Application to Apex Academy</button>
             </div>
         </form>
@@ -1038,7 +1082,10 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'inquiry-form', 'apex_inquiry_draft')">Clear Form</button>
+                        <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'inquiry-form', 'apex_inquiry_draft')">
+                            <span class="text-default">Clear Form</span>
+                            <span class="text-cleared">Form Cleared! ✓</span>
+                        </button>
                         <button type="submit" class="cta-btn">Send Message</button>
                     </div>
                 </form>
@@ -1144,7 +1191,7 @@
             }
         }
 
-        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING WITH VISUAL FEEDBACK ---
+        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING WITH TEXT CROSS-FADE ---
         function enableAutoSave(formId, storageKey) {
             const form = document.getElementById(formId);
             if (!form) return;
@@ -1189,20 +1236,13 @@
                 toggleTutorBio('');
                 checkAgeRequirement('');
 
-                // Instant Green Highlight Confirmation
-                const originalText = btn.innerText;
-                btn.innerText = "Form Cleared! ✓";
-                btn.style.backgroundColor = "#16a34a";
-                btn.style.color = "#ffffff";
-                btn.style.borderColor = "#16a34a";
+                // Trigger smooth cross-fade into green state
+                btn.classList.add('cleared-active');
 
-                // Hold green state for 1.2s, then trigger smooth 0.9s fade back
+                // Hold green state for exactly 1.0 second, then trigger 1.0 second smooth fade back
                 setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.backgroundColor = "";
-                    btn.style.color = "";
-                    btn.style.borderColor = "";
-                }, 1200);
+                    btn.classList.remove('cleared-active');
+                }, 1000);
             }
         }
 
