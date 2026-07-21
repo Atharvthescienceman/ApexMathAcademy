@@ -454,8 +454,10 @@
             flex: 2;
         }
 
+        /* Seamless Cross-Fading Clear Button */
         .clear-btn {
             flex: 1;
+            position: relative;
             background-color: transparent;
             color: #64748b;
             border: 1.5px solid #cbd5e1;
@@ -464,14 +466,50 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.9s ease; /* Tripled fade duration */
             text-align: center;
+            transition: background-color 1s ease, border-color 1s ease, color 1s ease;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 48px;
         }
 
         .clear-btn:hover {
             background-color: #f1f5f9;
             color: #0f172a;
             border-color: #94a3b8;
+        }
+
+        /* Text Layer Cross-Fade Animation */
+        .clear-btn .text-default,
+        .clear-btn .text-cleared {
+            transition: opacity 1s ease;
+            white-space: nowrap;
+        }
+
+        .clear-btn .text-default {
+            opacity: 1;
+        }
+
+        .clear-btn .text-cleared {
+            position: absolute;
+            opacity: 0;
+        }
+
+        /* Triggered Active Green State */
+        .clear-btn.cleared-active {
+            background-color: #16a34a !important;
+            color: #ffffff !important;
+            border-color: #16a34a !important;
+        }
+
+        .clear-btn.cleared-active .text-default {
+            opacity: 0;
+        }
+
+        .clear-btn.cleared-active .text-cleared {
+            opacity: 1;
         }
 
         /* Contact Cards Layout inside Inquiry Tab */
@@ -605,6 +643,74 @@
             background-color: var(--primary);
             color: var(--white);
             border-color: var(--primary);
+        }
+
+        /* CUSTOM SUCCESS CONFIRMATION MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(6px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            transform: translateY(20px) scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0) scale(1);
+        }
+
+        .success-badge {
+            width: 72px;
+            height: 72px;
+            background-color: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            margin: 0 auto 1.5rem auto;
+            border: 2px solid #bbf7d0;
+        }
+
+        .modal-card h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-card p {
+            color: #475569;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
         }
 
         footer {
@@ -858,7 +964,10 @@
             </div>
             
             <div class="form-actions">
-                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'signup-form', 'apex_signup_draft')">Clear Form</button>
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'signup-form', 'apex_signup_draft')">
+                    <span class="text-default">Clear Form</span>
+                    <span class="text-cleared">Form Cleared! ✓</span>
+                </button>
                 <button type="submit" class="cta-btn">Submit Registration Request</button>
             </div>
         </form>
@@ -984,7 +1093,10 @@
             </div>
 
             <div class="form-actions">
-                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'team-form', 'apex_team_draft')">Clear Form</button>
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'team-form', 'apex_team_draft')">
+                    <span class="text-default">Clear Form</span>
+                    <span class="text-cleared">Form Cleared! ✓</span>
+                </button>
                 <button type="submit" id="submit-app-btn" class="cta-btn" style="background-color: var(--secondary);">Submit Application to Apex Academy</button>
             </div>
         </form>
@@ -1038,13 +1150,26 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'inquiry-form', 'apex_inquiry_draft')">Clear Form</button>
+                        <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'inquiry-form', 'apex_inquiry_draft')">
+                            <span class="text-default">Clear Form</span>
+                            <span class="text-cleared">Form Cleared! ✓</span>
+                        </button>
                         <button type="submit" class="cta-btn">Send Message</button>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- SUCCESS SUBMISSION MODAL OVERLAY -->
+    <div id="success-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="success-badge">✓</div>
+            <h3>Submission Received!</h3>
+            <p>Your form was successfully submitted. We will contact you shortly to discuss demo classes, pacing options, and scheduling details!</p>
+            <button class="cta-btn" onclick="closeSuccessModal()">Close</button>
+        </div>
+    </div>
 
     <footer>
         <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
@@ -1144,7 +1269,7 @@
             }
         }
 
-        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING WITH VISUAL FEEDBACK ---
+        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING ---
         function enableAutoSave(formId, storageKey) {
             const form = document.getElementById(formId);
             if (!form) return;
@@ -1175,9 +1300,37 @@
                 localStorage.setItem(storageKey, JSON.stringify(data));
             });
 
-            // Clear draft when submitted
-            form.addEventListener('submit', () => {
-                localStorage.removeItem(storageKey);
+            // AJAX Form Submission Handling
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerText;
+                
+                submitBtn.innerText = "Sending Request...";
+                submitBtn.disabled = true;
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        form.reset();
+                        localStorage.removeItem(storageKey);
+                        toggleTutorBio('');
+                        checkAgeRequirement('');
+                        openSuccessModal();
+                    } else {
+                        alert("Oops! There was a problem submitting your form. Please try again.");
+                    }
+                } catch (error) {
+                    alert("Network error. Please check your connection and try again.");
+                } finally {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                }
             });
         }
 
@@ -1189,21 +1342,22 @@
                 toggleTutorBio('');
                 checkAgeRequirement('');
 
-                // Instant Green Highlight Confirmation
-                const originalText = btn.innerText;
-                btn.innerText = "Form Cleared! ✓";
-                btn.style.backgroundColor = "#16a34a";
-                btn.style.color = "#ffffff";
-                btn.style.borderColor = "#16a34a";
+                // Trigger smooth cross-fade into green state
+                btn.classList.add('cleared-active');
 
-                // Hold green state for 1.2s, then trigger smooth 0.9s fade back
+                // Hold green state for exactly 1.0 second, then trigger 1.0 second smooth fade back
                 setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.backgroundColor = "";
-                    btn.style.color = "";
-                    btn.style.borderColor = "";
-                }, 1200);
+                    btn.classList.remove('cleared-active');
+                }, 1000);
             }
+        }
+
+        function openSuccessModal() {
+            document.getElementById('success-modal').classList.add('active');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.remove('active');
         }
 
         // ALWAYS DEFAULT TO HOME ON RELOAD / FRESH OPEN
