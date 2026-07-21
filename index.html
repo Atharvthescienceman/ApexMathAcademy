@@ -464,7 +464,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease; /* Smooth green fade transition */
             text-align: center;
         }
 
@@ -858,7 +858,7 @@
             </div>
             
             <div class="form-actions">
-                <button type="button" class="clear-btn" onclick="resetFormWithDraft('signup-form', 'apex_signup_draft')">Clear Form</button>
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'signup-form', 'apex_signup_draft')">Clear Form</button>
                 <button type="submit" class="cta-btn">Submit Registration Request</button>
             </div>
         </form>
@@ -984,7 +984,7 @@
             </div>
 
             <div class="form-actions">
-                <button type="button" class="clear-btn" onclick="resetFormWithDraft('team-form', 'apex_team_draft')">Clear Form</button>
+                <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'team-form', 'apex_team_draft')">Clear Form</button>
                 <button type="submit" id="submit-app-btn" class="cta-btn" style="background-color: var(--secondary);">Submit Application to Apex Academy</button>
             </div>
         </form>
@@ -1038,7 +1038,7 @@
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" class="clear-btn" onclick="resetFormWithDraft('inquiry-form', 'apex_inquiry_draft')">Clear Form</button>
+                        <button type="button" class="clear-btn" onclick="resetFormWithDraft(this, 'inquiry-form', 'apex_inquiry_draft')">Clear Form</button>
                         <button type="submit" class="cta-btn">Send Message</button>
                     </div>
                 </form>
@@ -1144,7 +1144,7 @@
             }
         }
 
-        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING ---
+        // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING WITH VISUAL FEEDBACK ---
         function enableAutoSave(formId, storageKey) {
             const form = document.getElementById(formId);
             if (!form) return;
@@ -1181,13 +1181,27 @@
             });
         }
 
-        function resetFormWithDraft(formId, storageKey) {
+        function resetFormWithDraft(btn, formId, storageKey) {
             const form = document.getElementById(formId);
             if (form) {
                 form.reset();
                 localStorage.removeItem(storageKey);
                 toggleTutorBio('');
                 checkAgeRequirement('');
+
+                // Visual Confirmation Effect
+                const originalText = btn.innerText;
+                btn.innerText = "Form Cleared! ✓";
+                btn.style.backgroundColor = "#16a34a";
+                btn.style.color = "#ffffff";
+                btn.style.borderColor = "#16a34a";
+
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "";
+                    btn.style.color = "";
+                    btn.style.borderColor = "";
+                }, 1200);
             }
         }
 
