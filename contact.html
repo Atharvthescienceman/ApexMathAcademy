@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Apex Math Academy</title>
+
+    <!-- Professional Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary: #1e3a8a;
-            --secondary: #0d9488;
-            --dark: #1f2937;
-            --light: #f9fafb;
+            --primary: #152238;       /* Balanced Medium Slate Navy */
+            --primary-light: #2563eb; /* Vibrant Royal Accent */
+            --secondary: #0d9488;     /* Modern Crisp Teal */
+            --dark: #0f172a;         /* Deep Text Header */
+            --light: #f8fafc;        /* Light Gray Background */
             --white: #ffffff;
-            --border: #e5e7eb;
+            --border: #e2e8f0;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
@@ -27,22 +35,24 @@
             line-height: 1.6;
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar - Glassmorphism */
         nav {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 1.1rem 5%;
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 800;
             color: var(--primary);
             text-decoration: none;
             display: flex;
@@ -60,23 +70,26 @@
             text-decoration: none;
             color: var(--dark);
             font-weight: 600;
+            font-size: 0.95rem;
             transition: color 0.2s;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: var(--secondary);
+            color: var(--primary-light);
         }
 
         header {
-            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            background: linear-gradient(135deg, #152238 0%, #203a70 100%);
             color: var(--white);
-            padding: 4rem 5%;
+            padding: 4.5rem 5%;
             text-align: center;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
+            letter-spacing: -1px;
         }
 
         .contact-container {
@@ -97,13 +110,15 @@
         .info-card {
             background: var(--white);
             padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border-left: 5px solid var(--primary);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary-light);
         }
 
         .info-card h3 {
             color: var(--primary);
+            font-weight: 800;
             margin-bottom: 0.75rem;
         }
 
@@ -115,18 +130,20 @@
         .info-card a {
             color: var(--secondary);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .form-wrapper {
             background: var(--white);
-            padding: 3rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.04);
         }
 
         .form-wrapper h2 {
             color: var(--primary);
+            font-weight: 800;
             margin-bottom: 1.5rem;
         }
 
@@ -138,27 +155,29 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 4px;
-            font-size: 1rem;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.98rem;
         }
 
         .cta-btn {
             background-color: var(--secondary);
             color: var(--white);
-            padding: 0.75rem 2rem;
+            padding: 0.85rem 2rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
             transition: background 0.2s;
             width: 100%;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
         }
 
         .cta-btn:hover {
@@ -166,11 +185,11 @@
         }
 
         footer {
-            background-color: var(--dark);
-            color: var(--white);
+            background-color: var(--primary);
+            color: #94a3b8;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 2.5rem;
+            margin-top: 5rem;
             font-size: 0.9rem;
         }
 
@@ -187,7 +206,7 @@
     <nav>
         <a href="index.html" class="logo">📐 Apex Math Academy</a>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html?tab=home">Home</a></li>
             <li><a href="index.html?tab=about">About</a></li>
             <li><a href="index.html?tab=packages">Packages</a></li>
             <li><a href="index.html?tab=contact">Sign Up</a></li>
@@ -221,7 +240,7 @@
         </div>
 
         <div class="form-wrapper">
-            <h2>Send General Message</h2>
+            2 Send General Message
             <form action="https://formspree.io/f/xvzeaawj" method="POST">
                 <input type="hidden" name="Inquiry Classification" value="General Contact Question">
                 
