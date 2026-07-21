@@ -464,7 +464,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease; /* Smooth green fade transition */
+            transition: all 0.9s ease; /* Tripled fade duration */
             text-align: center;
         }
 
@@ -1189,13 +1189,14 @@
                 toggleTutorBio('');
                 checkAgeRequirement('');
 
-                // Visual Confirmation Effect
+                // Instant Green Highlight Confirmation
                 const originalText = btn.innerText;
                 btn.innerText = "Form Cleared! ✓";
                 btn.style.backgroundColor = "#16a34a";
                 btn.style.color = "#ffffff";
                 btn.style.borderColor = "#16a34a";
 
+                // Hold green state for 1.2s, then trigger smooth 0.9s fade back
                 setTimeout(() => {
                     btn.innerText = originalText;
                     btn.style.backgroundColor = "";
