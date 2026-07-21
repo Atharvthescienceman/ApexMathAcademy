@@ -42,6 +42,17 @@
             line-height: 1.6;
         }
 
+        /* Top Notification Alert for Charity */
+        .charity-top-bar {
+            background: linear-gradient(90deg, #be123c 0%, #e11d48 100%);
+            color: white;
+            text-align: center;
+            padding: 0.65rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+        }
+
         /* Navigation Bar - Glassmorphism */
         nav {
             background-color: rgba(255, 255, 255, 0.95);
@@ -75,14 +86,32 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: #64748b;
             font-weight: 600;
             font-size: 0.95rem;
-            transition: color 0.2s;
+            padding: 0.4rem 0;
+            position: relative;
+            transition: color 0.2s ease;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-light);
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-light);
+            border-radius: 2px;
         }
 
         header {
@@ -173,6 +202,37 @@
             font-size: 0.98rem;
         }
 
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .form-actions button[type="submit"] {
+            flex: 2;
+        }
+
+        .clear-btn {
+            flex: 1;
+            background-color: transparent;
+            color: #64748b;
+            border: 1.5px solid #cbd5e1;
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .clear-btn:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
         .cta-btn {
             background-color: var(--secondary);
             color: var(--white);
@@ -205,10 +265,21 @@
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+            .clear-btn, .form-actions button[type="submit"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Top Impact Header Notice Bar -->
+    <div class="charity-top-bar">
+        ❤️ MISSION DRIVEN: 40% OF ALL ACADEMY TUTORING PROFITS GO DIRECTLY TO LOCAL CHARITIES
+    </div>
 
     <nav>
         <a href="index.html" class="logo">📐 Apex Math Academy</a>
@@ -248,7 +319,7 @@
 
         <div class="form-wrapper">
             <h2>Send General Message</h2>
-            <form action="https://formspree.io/f/xvzeaawj" method="POST">
+            <form id="contact-form" action="https://formspree.io/f/xvzeaawj" method="POST">
                 <input type="hidden" name="Inquiry Classification" value="General Contact Question">
                 
                 <div class="form-group">
@@ -271,7 +342,10 @@
                     <textarea id="c-message" name="Message Content" rows="5" required placeholder="Ask your question here..."></textarea>
                 </div>
 
-                <button type="submit" class="cta-btn">Send Message</button>
+                <div class="form-actions">
+                    <button type="button" class="clear-btn" onclick="resetFormWithDraft('contact-form', 'apex_contact_draft')">Clear Form</button>
+                    <button type="submit" class="cta-btn">Send Message</button>
+                </div>
             </form>
         </div>
 
@@ -281,5 +355,51 @@
         <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
     </footer>
 
+    <script>
+        // --- AUTOMATIC FORM DRAFT SAVER & RESTORER ---
+        function enableAutoSave(formId, storageKey) {
+            const form = document.getElementById(formId);
+            if (!form) return;
+
+            // 1. Restore saved draft on load
+            const savedData = localStorage.getItem(storageKey);
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    Object.keys(data).forEach(name => {
+                        const input = form.querySelector(`[name="${name}"]`);
+                        if (input) input.value = data[name];
+                    });
+                } catch (e) {
+                    console.error("Could not parse saved draft", e);
+                }
+            }
+
+            // 2. Save progress on input
+            form.addEventListener('input', () => {
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => { data[key] = value; });
+                localStorage.setItem(storageKey, JSON.stringify(data));
+            });
+
+            // 3. Clear draft when submitted
+            form.addEventListener('submit', () => {
+                localStorage.removeItem(storageKey);
+            });
+        }
+
+        function resetFormWithDraft(formId, storageKey) {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.reset();
+                localStorage.removeItem(storageKey);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            enableAutoSave('contact-form', 'apex_contact_draft');
+        });
+    </script>
 </body>
 </html>
