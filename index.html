@@ -42,6 +42,17 @@
             line-height: 1.6;
         }
 
+        /* Top Notification Alert for Charity */
+        .charity-top-bar {
+            background: linear-gradient(90deg, #be123c 0%, #e11d48 100%);
+            color: white;
+            text-align: center;
+            padding: 0.65rem 1rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.4px;
+        }
+
         /* Navigation Bar - Glassmorphism */
         nav {
             background-color: rgba(255, 255, 255, 0.95);
@@ -65,6 +76,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
         }
 
         .nav-links {
@@ -103,17 +115,6 @@
             height: 3px;
             background-color: var(--primary-light);
             border-radius: 2px;
-        }
-
-        /* Top Notification Alert for Charity */
-        .charity-top-bar {
-            background: linear-gradient(90deg, #be123c 0%, #e11d48 100%);
-            color: white;
-            text-align: center;
-            padding: 0.65rem 1rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 0.4px;
         }
 
         /* Hero Banner */
@@ -473,6 +474,46 @@
             border-color: #94a3b8;
         }
 
+        /* Contact Cards Layout inside Inquiry Tab */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary-light);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card p {
+            font-size: 1.05rem;
+            color: #4b5563;
+        }
+
+        .info-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
         .split-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -576,9 +617,9 @@
         }
 
         @media (max-width: 768px) {
-            .split-row, .tutor-grid {
+            .split-row, .tutor-grid, .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 0;
+                gap: 2rem;
             }
             .hero h1 {
                 font-size: 2.3rem;
@@ -601,14 +642,14 @@
 
     <!-- Professional Navigation Grid Tabs -->
     <nav>
-        <div class="logo">📐 Apex Math Academy</div>
+        <div class="logo" onclick="switchTab('home')">📐 Apex Math Academy</div>
         <ul class="nav-links">
             <li><a onclick="switchTab('home')" id="tab-home" class="active">Home</a></li>
             <li><a onclick="switchTab('about')" id="tab-about">About</a></li>
             <li><a onclick="switchTab('packages')" id="tab-packages">Packages</a></li>
             <li><a onclick="switchTab('contact')" id="tab-contact">Sign Up</a></li>
             <li><a onclick="switchTab('jobs')" id="tab-jobs">Join Team</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a onclick="switchTab('inquiry')" id="tab-inquiry">Contact Us</a></li>
         </ul>
     </nav>
 
@@ -949,26 +990,90 @@
         </form>
     </section>
 
+    <!-- TAB 6: GENERAL INQUIRY / CONTACT US -->
+    <section id="inquiry" class="tab-content">
+        <h2 class="section-title">Get in Touch with Us</h2>
+        <p style="text-align:center; margin-bottom: 3rem; color: #475569;">Have questions about classes, custom pacing, or scheduling options? Reach out anytime.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-info">
+                <div class="info-card">
+                    <h3>📞 Call or Text</h3>
+                    <p><a href="tel:7324965250">(732) 496-5250</a></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>✉️ Direct Email</h3>
+                    <p><a href="mailto:atharvthescienceman@gmail.com">atharvthescienceman@gmail.com</a></p>
+                </div>
+
+                <div class="info-card">
+                    <h3>📍 Support Range</h3>
+                    <p>Providing local custom cohort configurations and premium private options.</p>
+                </div>
+            </div>
+
+            <div>
+                <form id="inquiry-form" action="https://formspree.io/f/xvzeaawj" method="POST" style="margin: 0; max-width: 100%;">
+                    <input type="hidden" name="Inquiry Classification" value="General Contact Question">
+                    
+                    <div class="form-group">
+                        <label for="c-name">Your Full Name</label>
+                        <input type="text" id="c-name" name="Sender Name" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="c-email">Email Address</label>
+                        <input type="email" id="c-email" name="Sender Email" required placeholder="johndoe@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-phone">Phone Number (Optional)</label>
+                        <input type="tel" id="c-phone" name="Sender Phone" placeholder="(123) 456-7890">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="c-message">Your Message</label>
+                        <textarea id="c-message" name="Message Content" rows="5" required placeholder="Ask your question here..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="clear-btn" onclick="resetFormWithDraft('inquiry-form', 'apex_inquiry_draft')">Clear Form</button>
+                        <button type="submit" class="cta-btn">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
     </footer>
 
-    <!-- Interactive Navigation & Bio UI Logic Script -->
+    <!-- Interactive Navigation & UI Logic Script -->
     <script>
         function switchTab(tabId, packagePreselect) {
+            // 1. Clear active status from all sections and nav links
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => link.classList.remove('active'));
 
+            // 2. Activate target content
             const targetContent = document.getElementById(tabId);
-            if (targetContent) targetContent.classList.add('active');
+            if (targetContent) {
+                targetContent.classList.add('active');
+            } else {
+                document.getElementById('home').classList.add('active');
+                tabId = 'home';
+            }
 
+            // 3. Activate target nav tab link
             const navTab = document.getElementById('tab-' + tabId);
             if (navTab) navTab.classList.add('active');
 
-            // Package Auto-Selection Logic
+            // 4. Handle pricing package auto-selection
             if (packagePreselect) {
                 const packageSelect = document.getElementById('package-choice');
                 if (packageSelect) {
@@ -1044,7 +1149,7 @@
             const form = document.getElementById(formId);
             if (!form) return;
 
-            // 1. Restore saved draft on load
+            // Restore saved draft on load
             const savedData = localStorage.getItem(storageKey);
             if (savedData) {
                 try {
@@ -1062,7 +1167,7 @@
                 }
             }
 
-            // 2. Save progress on input
+            // Save progress on input
             form.addEventListener('input', () => {
                 const formData = new FormData(form);
                 const data = {};
@@ -1070,7 +1175,7 @@
                 localStorage.setItem(storageKey, JSON.stringify(data));
             });
 
-            // 3. Clear draft when submitted
+            // Clear draft when submitted
             form.addEventListener('submit', () => {
                 localStorage.removeItem(storageKey);
             });
@@ -1086,18 +1191,13 @@
             }
         }
 
-        // Initialize Tab & Auto-Save
+        // ALWAYS DEFAULT TO HOME ON RELOAD / FRESH OPEN
         window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const requestedTab = urlParams.get('tab');
-            if (requestedTab) {
-                switchTab(requestedTab);
-            } else {
-                switchTab('home');
-            }
+            switchTab('home');
 
             enableAutoSave('signup-form', 'apex_signup_draft');
             enableAutoSave('team-form', 'apex_team_draft');
+            enableAutoSave('inquiry-form', 'apex_inquiry_draft');
         });
     </script>
 </body>
