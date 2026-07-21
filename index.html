@@ -17,8 +17,8 @@
     <style>
         /* Modern Design Framework */
         :root {
-            --primary: #0f172a;       /* Sleek Deep Navy Slate */
-            --primary-light: #2563eb; /* Vibrant Indigo Accent */
+            --primary: #1e3a8a;       /* Lighter Royal Navy Slate */
+            --primary-light: #3b82f6; /* Vibrant Royal Blue */
             --secondary: #0d9488;     /* Modern Crisp Teal */
             --dark: #1e293b;         /* Charcoal Text */
             --light: #f8fafc;        /* Ultra Light Gray Background */
@@ -99,7 +99,7 @@
 
         /* Hero Banner */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
             color: var(--white);
             padding: 5.5rem 5%;
             text-align: center;
@@ -115,7 +115,7 @@
         .hero p {
             font-size: 1.25rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            opacity: 0.95;
             font-weight: 400;
             max-width: 650px;
             margin-left: auto;
@@ -558,7 +558,7 @@
     <!-- Interactive Hero Section -->
     <header class="hero">
         <h1>Apex Math Academy</h1>
-        <p>Turn Math Stress into Success</p>
+        <p>Climb Higher. Count on Success.</p>
         <button class="cta-btn" onclick="switchTab('packages')">View Classes & Pricing</button>
     </header>
 
@@ -653,7 +653,7 @@
                         <li>✓ Comprehensive core lesson plan coverage</li>
                     </ul>
                 </div>
-                <button class="cta-btn" style="width:100%;" onclick="switchTab('contact')">Choose Flex</button>
+                <button class="cta-btn" style="width:100%;" onclick="switchTab('contact', 'flex')">Choose Flex</button>
             </div>
 
             <div class="card popular">
@@ -671,7 +671,7 @@
                         <li>✓ Keeps logical skills completely sharp over break</li>
                     </ul>
                 </div>
-                <button class="cta-btn" style="width:100%; background:var(--primary);" onclick="switchTab('contact')">Choose Booster</button>
+                <button class="cta-btn" style="width:100%; background:var(--primary);" onclick="switchTab('contact', 'booster')">Choose Booster</button>
             </div>
 
             <div class="card elite-value">
@@ -693,7 +693,7 @@
                         <li>★ Deep-dive diagnostic exam analysis support</li>
                     </ul>
                 </div>
-                <button class="cta-btn" style="width:100%; background:var(--accent);" onclick="switchTab('contact')">Choose Elite</button>
+                <button class="cta-btn" style="width:100%; background:var(--accent);" onclick="switchTab('contact', 'elite')">Choose Elite</button>
             </div>
         </div>
     </section>
@@ -743,14 +743,14 @@
                 <label for="package-choice">Desired Academic Package</label>
                 <select id="package-choice" name="Selected Plan Package">
                     <optgroup label="Standard Group Classes">
-                        <option>Drop-In Flex (Group: $12/class)</option>
-                        <option>Summer Booster (Group: $10/class - MOST POPULAR)</option>
-                        <option>The Grand Elite (Group: $309.99/season Unlimited)</option>
+                        <option value="Drop-In Flex (Group: $12/class)">Drop-In Flex (Group: $12/class)</option>
+                        <option value="Summer Booster (Group: $10/class - MOST POPULAR)">Summer Booster (Group: $10/class - MOST POPULAR)</option>
+                        <option value="The Grand Elite (Group: $309.99/season Unlimited)">The Grand Elite (Group: $309.99/season Unlimited)</option>
                     </optgroup>
                     <optgroup label="Premium Private 1-on-1 Sessions">
-                        <option>Drop-In Flex (Private: $17/class)</option>
-                        <option>Summer Booster (Private: $15/class)</option>
-                        <option>The Grand Elite (Private: $450.00/season Unlimited)</option>
+                        <option value="Drop-In Flex (Private: $17/class)">Drop-In Flex (Private: $17/class)</option>
+                        <option value="Summer Booster (Private: $15/class)">Summer Booster (Private: $15/class)</option>
+                        <option value="The Grand Elite (Private: $450.00/season Unlimited)">The Grand Elite (Private: $450.00/season Unlimited)</option>
                     </optgroup>
                 </select>
             </div>
@@ -891,7 +891,7 @@
 
     <!-- Interactive Navigation & Bio UI Logic Script -->
     <script>
-        function switchTab(tabId) {
+        function switchTab(tabId, packagePreselect) {
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
 
@@ -899,7 +899,20 @@
             links.forEach(link => link.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
-            document.getElementById('tab-' + tabId).classList.add('active');
+            const navTab = document.getElementById('tab-' + tabId);
+            if (navTab) navTab.classList.add('active');
+
+            // Package Auto-Selection Logic
+            if (packagePreselect) {
+                const packageSelect = document.getElementById('package-choice');
+                if (packagePreselect === 'flex') {
+                    packageSelect.value = "Drop-In Flex (Group: $12/class)";
+                } else if (packagePreselect === 'booster') {
+                    packageSelect.value = "Summer Booster (Group: $10/class - MOST POPULAR)";
+                } else if (packagePreselect === 'elite') {
+                    packageSelect.value = "The Grand Elite (Group: $309.99/season Unlimited)";
+                }
+            }
 
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
