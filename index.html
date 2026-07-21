@@ -703,7 +703,7 @@
         <h2 class="section-title">Secure Your Seat at Apex</h2>
         <p style="text-align:center; margin-bottom: 2rem;">Fill out this registration framework to secure an active tutoring track block.</p>
         
-        <form action="https://formspree.io/f/xvzeaawj" method="POST">
+        <form id="signup-form" action="https://formspree.io/f/xvzeaawj" method="POST">
             <input type="hidden" name="Submission Intent" value="Official Student Sign Up Request">
             
             <div class="form-group">
@@ -789,7 +789,7 @@
             </ul>
         </div>
 
-        <form action="https://formspree.io/f/xvzeaawj" method="POST">
+        <form id="team-form" action="https://formspree.io/f/xvzeaawj" method="POST">
             <input type="hidden" id="application-type-tracker" name="Application Position Type" value="Paid Instructor ($12/hr)">
 
             <div class="form-section-header">1. Basic Information</div>
@@ -975,8 +975,44 @@
             }
         }
 
-        // AUTO-OPEN TAB FROM URL PARAMETERS (e.g., index.html?tab=about)
-        // Default to 'home' if no parameter is provided
+        // --- AUTOMATIC FORM DRAFT SAVER & RESTORER ---
+        function enableAutoSave(formId, storageKey) {
+            const form = document.getElementById(formId);
+            if (!form) return;
+
+            // 1. Restore saved draft on load
+            const savedData = localStorage.getItem(storageKey);
+            if (savedData) {
+                try {
+                    const data = JSON.parse(savedData);
+                    Object.keys(data).forEach(name => {
+                        const input = form.querySelector(`[name="${name}"]`);
+                        if (input) {
+                            input.value = data[name];
+                            if (input.id === 'tutor-select') toggleTutorBio(input.value);
+                            if (input.id === 'app-age') checkAgeRequirement(input.value);
+                        }
+                    });
+                } catch (e) {
+                    console.error("Could not parse saved draft", e);
+                }
+            }
+
+            // 2. Save progress on input
+            form.addEventListener('input', () => {
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => { data[key] = value; });
+                localStorage.setItem(storageKey, JSON.stringify(data));
+            });
+
+            // 3. Clear draft when submitted
+            form.addEventListener('submit', () => {
+                localStorage.removeItem(storageKey);
+            });
+        }
+
+        // Initialize Tab & Auto-Save
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const requestedTab = urlParams.get('tab');
@@ -985,6 +1021,9 @@
             } else {
                 switchTab('home');
             }
+
+            enableAutoSave('signup-form', 'apex_signup_draft');
+            enableAutoSave('team-form', 'apex_team_draft');
         });
     </script>
 </body>
