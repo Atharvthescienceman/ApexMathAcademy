@@ -18,7 +18,7 @@
         /* Modern Design Framework */
         :root {
             --primary: #152238;       /* Balanced Medium Slate Navy */
-            --primary-light: #4466A0; /* Vibrant Royal Accent */
+            --primary-light: #2563eb; /* Vibrant Royal Accent */
             --secondary: #0d9488;     /* Modern Crisp Teal */
             --dark: #0f172a;         /* Deep Text Header */
             --light: #f8fafc;        /* Light Gray Background */
@@ -77,6 +77,12 @@
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
+            user-select: none;
+            transition: transform 0.2s;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
         }
 
         .nav-links {
@@ -242,6 +248,57 @@
             font-weight: 500;
         }
 
+        /* SECRET DISCOUNT PROMO TAB STYLING */
+        .secret-card {
+            background: linear-gradient(135deg, #fffbe3 0%, #fef3c7 100%);
+            border: 3px solid #f59e0b;
+            border-radius: 20px;
+            padding: 3.5rem 2.5rem;
+            text-align: center;
+            box-shadow: 0 20px 40px -10px rgba(245, 158, 11, 0.25);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .secret-badge {
+            display: inline-block;
+            background: #d97706;
+            color: #ffffff;
+            font-weight: 800;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .secret-card h2 {
+            color: #78350f;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .secret-card p {
+            color: #92400e;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .discount-highlight-pill {
+            background: #ffffff;
+            border: 2px dashed #d97706;
+            padding: 1.2rem 2rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #b45309;
+            margin-bottom: 2.5rem;
+        }
+
         /* Tutor Profile Section Styling */
         .tutor-section {
             margin-top: 5rem;
@@ -369,6 +426,18 @@
             color: #64748b;
             display: block;
             margin-top: 0.25rem;
+        }
+
+        .promo-discount-badge {
+            background-color: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 0.75rem;
         }
 
         .features-list {
@@ -748,7 +817,7 @@
 
     <!-- Professional Navigation Grid Tabs -->
     <nav>
-        <div class="logo" onclick="switchTab('home')">📐 Apex Math Academy</div>
+        <div class="logo" onclick="handleLogoClick()">📐 Apex Math Academy</div>
         <ul class="nav-links">
             <li><a onclick="switchTab('home')" id="tab-home" class="active">Home</a></li>
             <li><a onclick="switchTab('about')" id="tab-about">About</a></li>
@@ -839,6 +908,9 @@
     <!-- TAB 3: PACKAGES -->
     <section id="packages" class="tab-content">
         <h2 class="section-title">Transparent, Flexible Pricing Plans</h2>
+        <div id="active-discount-banner" style="display:none; text-align:center; margin-bottom:2rem;">
+            <span class="promo-discount-badge">🎉 FIRST-YEAR EASTER EGG DISCOUNT APPLIED: $5 OFF EVERY CLASS SESSION!</span>
+        </div>
         <p style="text-align: center; margin-top: -2rem; margin-bottom: 1.5rem;">
             <a href="syllabus.html" class="syllabus-link-btn">📋 View Our Curriculum Syllabus Breakdowns by Grade →</a>
         </p>
@@ -847,8 +919,8 @@
                 <div>
                     <h3>Drop-In Flex</h3>
                     <div class="price-tag">
-                        $12<span class="price-sub">Group / session</span>
-                        <span style="font-size:1.3rem; color:var(--primary-light); font-weight:800; display:block; margin-top:0.5rem;">$17<span class="price-sub" style="display:inline;"> Private 1-on-1</span></span>
+                        <span id="price-flex-group">$12</span><span class="price-sub">Group / session</span>
+                        <span style="font-size:1.3rem; color:var(--primary-light); font-weight:800; display:block; margin-top:0.5rem;"><span id="price-flex-private">$17</span><span class="price-sub" style="display:inline;"> Private 1-on-1</span></span>
                     </div>
                     <ul class="features-list">
                         <li>✓ Perfect for quick homework turn-arounds</li>
@@ -865,8 +937,8 @@
                     <span style="background:var(--secondary); color:white; padding:0.3rem 0.85rem; border-radius:20px; font-size:0.75rem; font-weight:800; letter-spacing:0.5px;">MOST POPULAR</span>
                     <h3 style="margin-top:0.5rem;">Summer Booster</h3>
                     <div class="price-tag">
-                        $10<span class="price-sub">Group / session</span>
-                        <span style="font-size:1.3rem; color:var(--secondary); font-weight:800; display:block; margin-top:0.5rem;">$15<span class="price-sub" style="display:inline;"> Private 1-on-1</span></span>
+                        <span id="price-booster-group">$10</span><span class="price-sub">Group / session</span>
+                        <span style="font-size:1.3rem; color:var(--secondary); font-weight:800; display:block; margin-top:0.5rem;"><span id="price-booster-private">$15</span><span class="price-sub" style="display:inline;"> Private 1-on-1</span></span>
                     </div>
                     <ul class="features-list">
                         <li>✓ Fixed summer strategy framework</li>
@@ -883,8 +955,8 @@
                     <span style="background:var(--accent); color:white; padding:0.3rem 0.85rem; border-radius:20px; font-size:0.75rem; font-weight:800; letter-spacing:0.5px;">BEST VALUE DEAL</span>
                     <h3 style="margin-top:0.5rem;">The Grand Elite</h3>
                     <div class="price-tag">
-                        $309.99<span class="price-sub">Group / full season</span>
-                        <span style="font-size:1.3rem; color:#b45309; font-weight:800; display:block; margin-top:0.5rem;">$450.00<span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
+                        <span id="price-elite-group">$309.99</span><span class="price-sub">Group / full season</span>
+                        <span style="font-size:1.3rem; color:#b45309; font-weight:800; display:block; margin-top:0.5rem;"><span id="price-elite-private">$450.00</span><span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
                     </div>
                     <div class="savings-badge">
                         💡 Save hundreds in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
@@ -898,6 +970,25 @@
                     </ul>
                 </div>
                 <button class="cta-btn" style="width:100%; background:var(--accent);" onclick="switchTab('contact', 'elite')">Choose Elite</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECRET EASTER EGG PROMO TAB -->
+    <section id="secret-deal" class="tab-content">
+        <div class="secret-card">
+            <span class="secret-badge">🎁 First-Year Anniversary Secret Found!</span>
+            <h2>Congrats! You Found Our Secret Page! 🥳</h2>
+            <p>
+                This special reward was created exclusively for our early supporters who explored our platform during the inaugural first year of our business! As an official welcome reward, we are granting you <strong>$5.00 off per class session</strong>.
+            </p>
+            <div class="discount-highlight-pill">
+                🏷️ Automatic Discount Unlocked: $5 Off Every Class
+            </div>
+            <div>
+                <button class="cta-btn" style="background:#d97706; padding:1.1rem 2.5rem; font-size:1.1rem;" onclick="activateDiscountAndGoToPackages()">
+                    Claim $5 Off & Return to Packages →
+                </button>
             </div>
         </div>
     </section>
@@ -931,7 +1022,7 @@
                 <div id="tutor-bio-box" class="tutor-profile-box" style="display: none;">
                     <div class="tutor-header">👤 Meet Your Instructor: Atharv Gupta</div>
                     <p class="tutor-paragraph">
-                        Atharv is a 14-year-old high school honors student who possesses a profound love for mathematics and peer academic development. Currently mastering advanced 11th-grade mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring.
+                        Atharv is a high school honors student specializing in Algebra, Pre-Algebra, and competition mathematics. His high-energy peer-level communication approach builds solid foundational confidence.
                     </p>
                 </div>
             </div>
@@ -1084,7 +1175,7 @@
 
             <div class="form-group">
                 <label for="app-bio">Share Your Tutor Profile Bio (Displayed to parents when selecting a tutor):</label>
-                <textarea id="app-bio" name="Applicant Profile Bio" rows="6" required placeholder="Example: Atharv is a 14-year-old high school honors student who possesses a profound love for mathematics and peer academic development. Currently mastering advanced 11th-grade mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring."></textarea>
+                <textarea id="app-bio" name="Applicant Profile Bio" rows="6" required placeholder="Example: Atharv is a high school honors student who possesses a profound love for mathematics and peer academic development. Currently mastering advanced mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring."></textarea>
             </div>
 
             <div class="form-group">
@@ -1177,6 +1268,51 @@
 
     <!-- Interactive Navigation & UI Logic Script -->
     <script>
+        let discountActive = false;
+
+        // Easter Egg: Check if current date is before New Year's Day (Jan 1, 2027)
+        function isBeforeNewYearsDay() {
+            const now = new Date();
+            const newYearsDay2027 = new Date(2027, 0, 1); // Jan 1, 2027
+            return now < newYearsDay2027;
+        }
+
+        function handleLogoClick() {
+            if (isBeforeNewYearsDay()) {
+                switchTab('secret-deal');
+            } else {
+                switchTab('home');
+            }
+        }
+
+        function activateDiscountAndGoToPackages() {
+            discountActive = true;
+            
+            // Lower prices by $5 per session
+            document.getElementById('price-flex-group').innerText = "$7";
+            document.getElementById('price-flex-private').innerText = "$12";
+            
+            document.getElementById('price-booster-group').innerText = "$5";
+            document.getElementById('price-booster-private').innerText = "$10";
+
+            document.getElementById('price-elite-group').innerText = "$304.99";
+            document.getElementById('price-elite-private').innerText = "$445.00";
+
+            // Show active discount banner
+            document.getElementById('active-discount-banner').style.display = "block";
+
+            // Update registration drop-down options
+            const packageSelect = document.getElementById('package-choice');
+            if (packageSelect) {
+                packageSelect.options[0].text = "Drop-In Flex (Group: $7/class - PROMO APPLIED)";
+                packageSelect.options[1].text = "Summer Booster (Group: $5/class - PROMO APPLIED)";
+                packageSelect.options[3].text = "Drop-In Flex (Private: $12/class - PROMO APPLIED)";
+                packageSelect.options[4].text = "Summer Booster (Private: $10/class - PROMO APPLIED)";
+            }
+
+            switchTab('packages');
+        }
+
         function switchTab(tabId, packagePreselect) {
             // 1. Clear active status from all sections and nav links
             const contents = document.querySelectorAll('.tab-content');
@@ -1203,9 +1339,9 @@
                 const packageSelect = document.getElementById('package-choice');
                 if (packageSelect) {
                     if (packagePreselect === 'flex') {
-                        packageSelect.value = "Drop-In Flex (Group: $12/class)";
+                        packageSelect.value = discountActive ? "Drop-In Flex (Group: $7/class - PROMO APPLIED)" : "Drop-In Flex (Group: $12/class)";
                     } else if (packagePreselect === 'booster') {
-                        packageSelect.value = "Summer Booster (Group: $10/class - MOST POPULAR)";
+                        packageSelect.value = discountActive ? "Summer Booster (Group: $5/class - PROMO APPLIED)" : "Summer Booster (Group: $10/class - MOST POPULAR)";
                     } else if (packagePreselect === 'elite') {
                         packageSelect.value = "The Grand Elite (Group: $309.99/season Unlimited)";
                     }
