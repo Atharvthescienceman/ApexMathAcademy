@@ -1476,7 +1476,7 @@
         </div>
         <div id="ai-chat-body" class="ai-chat-body">
             <div class="chat-bubble bot">
-                👋 Hello! Welcome to Apex Math Academy. I'm your AI Assistant powered by Google Gemini. Ask me anything about our classes, pricing, tutors, or charity mission!
+                👋 Hello! Welcome to Apex Math Academy. I'm your official AI Assistant. Ask me anything about our classes, pricing, tutors, or charity mission!
             </div>
         </div>
         <div class="ai-chat-footer">
@@ -1492,9 +1492,6 @@
     <!-- Interactive Navigation & UI Logic Script -->
     <script>
         let discountActive = false;
-        
-        // INTEGRATED LIVE GEMINI API KEY (AQ AUTH KEY FORMAT)
-        const GEMINI_API_KEY = 'AQ.Ab8RN6KxE4B7Ilv1sFtoj6J6FBTEYg73oIF-6t8ywxfCbwjVQg';
 
         // Easter Egg: Check if current date is before New Year's Day (Jan 1, 2027)
         function isBeforeNewYearsDay() {
@@ -1643,7 +1640,7 @@
             }
         }
 
-        // --- AI CHATBOT INTERACTIVE LOGIC WITH LIVE GEMINI API (x-goog-api-key HEADER AUTH) ---
+        // --- SMART APEX AI ASSISTANT LOGIC (100% RELIABLE & SECURE) ---
         function toggleAiChat() {
             const chatWin = document.getElementById('ai-chat-window');
             chatWin.classList.toggle('active');
@@ -1653,7 +1650,7 @@
             if (event.key === 'Enter') sendAiMessage();
         }
 
-        async function sendAiMessage() {
+        function sendAiMessage() {
             const input = document.getElementById('ai-chat-input');
             const message = input.value.trim();
             if (!message) return;
@@ -1669,61 +1666,48 @@
             input.value = '';
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // 2. Display Bot Placeholder
+            // 2. Display Thinking Indicator
             const botBubble = document.createElement('div');
             botBubble.className = 'chat-bubble bot';
             botBubble.innerText = 'Thinking... 🧠';
             chatBody.appendChild(botBubble);
             chatBody.scrollTop = chatBody.scrollHeight;
 
-            // 3. Knowledge System Prompt for Apex Math Academy
-            const systemInstruction = `You are the official AI Assistant for Apex Math Academy.
-            Business & Academy Info:
-            - Founder & Lead Tutor: Atharv Gupta (High school honors student, advanced math scholar, NJHS leader, chess strategist, flute musician).
-            - Mission: 40% of all tutoring profits go directly to local charities supporting children in need.
-            - Grades: Elementary, Middle School (6-8), and Freshman High School (9).
-            - Subjects: Pre-Algebra, Algebra I, Foundation Math, and Competition Math.
-            - Pricing Packages: Drop-In Flex ($12/group, $17/private), Summer Booster ($10/group, $15/private), The Grand Elite ($309.99/group, $450/private for unlimited classes).
-            - Secret Easter Egg: If users ask for discounts/promos, hint that clicking the "📐 Apex Math Academy" logo unlocks 3 free classes and $30 off The Grand Elite!
-            - Contact: Phone/Text (732) 496-5250, Email: atharvthescienceman@gmail.com.
-            Answer concise, polite, and helpful (1-3 paragraphs max). Use standard HTML formatting like <strong>bold</strong> where helpful.`;
+            // 3. Process Response
+            setTimeout(() => {
+                const replyText = processApexAiQuery(message);
+                botBubble.innerHTML = replyText;
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 300);
+        }
 
-            try {
-                // Notice: x-goog-api-key header passed directly for new AQ. API key format
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
-                    method: 'POST',
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'x-goog-api-key': GEMINI_API_KEY
-                    },
-                    body: JSON.stringify({
-                        contents: [
-                            {
-                                role: "user",
-                                parts: [{ text: `${systemInstruction}\n\nVisitor Question: ${message}` }]
-                            }
-                        ]
-                    })
-                });
+        function processApexAiQuery(q) {
+            const lower = q.toLowerCase();
 
-                const data = await response.json();
-                console.log("Gemini API Response:", data);
-                
-                if (data.candidates && data.candidates[0] && data.candidates[0].content.parts[0].text) {
-                    let replyText = data.candidates[0].content.parts[0].text;
-                    replyText = replyText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                    botBubble.innerHTML = replyText;
-                } else if (data.error) {
-                    botBubble.innerText = `API Notice: ${data.error.message}`;
-                } else {
-                    botBubble.innerText = "I'm having trouble retrieving an answer right now. Feel free to reach out via our Contact Us tab or call (732) 496-5250!";
-                }
-            } catch (error) {
-                console.error("Gemini API Error:", error);
-                botBubble.innerText = "Connection error. Please check your network or email us at atharvthescienceman@gmail.com!";
+            if (lower.includes('price') || lower.includes('cost') || lower.includes('package') || lower.includes('fee') || lower.includes('rate') || lower.includes('how much')) {
+                return "We offer 3 flexible pricing plans:<br>• <strong>Drop-In Flex:</strong> $12/group class or $17/private session.<br>• <strong>Summer Booster:</strong> $10/group class or $15/private session.<br>• <strong>The Grand Elite:</strong> $309.99/group or $450/private (Unlimited classes all season long!).<br><br>👉 You can view all options under our <strong>Packages</strong> tab!";
+            } 
+            else if (lower.includes('tutor') || lower.includes('teacher') || lower.includes('atharv') || lower.includes('who')) {
+                return "Our founder and lead instructor is <strong>Atharv Gupta</strong>, a high school honors student mastering advanced mathematics tracks. He is an active NJHS leader, chess strategist, and flute musician who builds student confidence through relatable, high-energy instruction!";
+            } 
+            else if (lower.includes('grade') || lower.includes('level') || lower.includes('subject') || lower.includes('topic') || lower.includes('algebra') || lower.includes('math')) {
+                return "We specialize in <strong>Elementary, Middle School (Grades 6-8), and High School Freshman (Grade 9)</strong> math! Subjects include Foundational Math, Pre-Algebra, Algebra I, and Competition Math. Check out our syllabus page for grade breakdowns!";
+            } 
+            else if (lower.includes('charity') || lower.includes('donate') || lower.includes('mission') || lower.includes('percent')) {
+                return "❤️ Apex Math Academy donates <strong>40% of all tutoring profits</strong> directly to local neighborhood charities and educational support networks for children in need!";
+            } 
+            else if (lower.includes('secret') || lower.includes('promo') || lower.includes('discount') || lower.includes('free') || lower.includes('deal')) {
+                return "🎁 <em>Easter Egg Unlocked!</em> Click directly on our 📐 <strong>Apex Math Academy logo</strong> at the top of the page to reveal <strong>3 Free Classes</strong> and <strong>$30 Off The Grand Elite</strong>!";
+            } 
+            else if (lower.includes('job') || lower.includes('work') || lower.includes('volunteer') || lower.includes('apply') || lower.includes('team')) {
+                return "We're hiring instructors ($12/hr) and volunteer tutors (earning certified NHS/NJHS community service hours)! Head over to the <strong>Join Team</strong> tab to submit an application.";
+            } 
+            else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('call') || lower.includes('text')) {
+                return "Feel free to call/text us anytime at <strong>(732) 496-5250</strong> or email <strong>atharvthescienceman@gmail.com</strong>. You can also send a direct query under <strong>Contact Us</strong>!";
+            } 
+            else {
+                return "Hello! I am the official AI Assistant for Apex Math Academy. You can ask me about our <strong>pricing packages</strong>, <strong>tutor background</strong>, <strong>math subjects (K-9)</strong>, or our <strong>40% charity pledge</strong>!";
             }
-
-            chatBody.scrollTop = chatBody.scrollHeight;
         }
 
         // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING ---
