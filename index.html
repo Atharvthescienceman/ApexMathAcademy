@@ -293,7 +293,7 @@
             padding: 1.2rem 2rem;
             border-radius: 12px;
             display: inline-block;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: #b45309;
             margin-bottom: 2.5rem;
@@ -909,7 +909,7 @@
     <section id="packages" class="tab-content">
         <h2 class="section-title">Transparent, Flexible Pricing Plans</h2>
         <div id="active-discount-banner" style="display:none; text-align:center; margin-bottom:2rem;">
-            <span class="promo-discount-badge">🎉 FIRST-YEAR EASTER EGG UNLOCKED: YOUR FIRST 3 CLASSES ARE 100% FREE!</span>
+            <span class="promo-discount-badge">🎉 FIRST-YEAR EASTER EGG UNLOCKED: 3 FREE CLASSES + $30 OFF THE GRAND ELITE!</span>
         </div>
         <p style="text-align: center; margin-top: -2rem; margin-bottom: 1.5rem;">
             <a href="syllabus.html" class="syllabus-link-btn">📋 View Our Curriculum Syllabus Breakdowns by Grade →</a>
@@ -955,11 +955,11 @@
             <div class="card elite-value">
                 <div>
                     <span style="background:var(--accent); color:white; padding:0.3rem 0.85rem; border-radius:20px; font-size:0.75rem; font-weight:800; letter-spacing:0.5px;">BEST VALUE DEAL</span>
-                    <div id="badge-elite-free" style="display:none; margin-top:0.5rem;" class="promo-discount-badge">🎁 BONUS 3 FREE INTRO SESSIONS</div>
+                    <div id="badge-elite-free" style="display:none; margin-top:0.5rem;" class="promo-discount-badge">🎁 3 FREE CLASSES + $30 OFF APPLIED</div>
                     <h3 style="margin-top:0.5rem;">The Grand Elite</h3>
                     <div class="price-tag">
-                        $309.99<span class="price-sub">Group / full season</span>
-                        <span style="font-size:1.3rem; color:#b45309; font-weight:800; display:block; margin-top:0.5rem;">$450.00<span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
+                        <span id="price-elite-group">$309.99</span><span class="price-sub">Group / full season</span>
+                        <span style="font-size:1.3rem; color:#b45309; font-weight:800; display:block; margin-top:0.5rem;"><span id="price-elite-private">$450.00</span><span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
                     </div>
                     <div class="savings-badge">
                         💡 Save hundreds in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
@@ -983,14 +983,14 @@
             <span class="secret-badge">🎁 First-Year Anniversary Secret Found!</span>
             <h2>Congrats! You Found Our Secret Page! 🥳</h2>
             <p>
-                This page was awarded strictly for our customers purchasing a package and discovering our hidden link during the first year of our business! To celebrate, you get <strong>3 FREE CLASSES</strong> right at the start of your tutoring journey. Simply return to our packages page and your bonus classes will be unlocked automatically!
+                This page was awarded strictly for our customers purchasing a package and discovering our hidden link during the first year of our business! To celebrate, you receive <strong>3 FREE CLASSES</strong> right at the start of your tutoring journey, plus <strong>$30.00 OFF</strong> on The Grand Elite package. Simply head back to our packages page and your bonus offers are active automatically!
             </p>
             <div class="discount-highlight-pill">
-                🎁 Bonus Offer Unlocked: First 3 Classes Are 100% Free!
+                🎁 Bonus Offers Unlocked: 3 Free Classes + $30 Off Grand Elite!
             </div>
             <div>
-                <button class="cta-btn" style="background:#d97706; padding:1.1rem 2.5rem; font-size:1.1rem;" onclick="activateDiscountAndGoToPackages()">
-                    Claim 3 Free Classes & View Packages →
+                <button class="cta-btn" style="background:#d97706; padding:1.1rem 2.5rem; font-size:1.1rem;" onclick="switchTab('packages')">
+                    Claim Discount & View Packages →
                 </button>
             </div>
         </div>
@@ -1025,7 +1025,7 @@
                 <div id="tutor-bio-box" class="tutor-profile-box" style="display: none;">
                     <div class="tutor-header">👤 Meet Your Instructor: Atharv Gupta</div>
                     <p class="tutor-paragraph">
-                        Atharv is a high school honors student who possesses a profound love for mathematics and peer academic development. Currently mastering advanced mathematics tracks ahead of schedule, he brings an outstanding analytical framework to his tutoring methodology. As an active participant and leader in the National Junior Honor Society (NJHS), Atharv consistently prioritizes civic scholarship and educational outreach. Beyond his core academic track, he is a dedicated chess strategist and skilled flute musician who truly loves interacting with children and matching their unique learning paces. His relatable, high-energy approach builds true confidence, proving to younger students that complex problem-solving can be both accessible and inspiring.
+                        Atharv is a high school honors student specializing in Algebra, Pre-Algebra, and competition mathematics. His high-energy peer-level communication approach builds solid foundational confidence.
                     </p>
                 </div>
             </div>
@@ -1271,7 +1271,7 @@
 
     <!-- Interactive Navigation & UI Logic Script -->
     <script>
-        let freeClassesUnlocked = false;
+        let discountActive = false;
 
         // Easter Egg: Check if current date is before New Year's Day (Jan 1, 2027)
         function isBeforeNewYearsDay() {
@@ -1282,31 +1282,44 @@
 
         function handleLogoClick() {
             if (isBeforeNewYearsDay()) {
+                activateDiscountState(); // Instantly unlock discount so top navbar navigation also keeps it!
                 switchTab('secret-deal');
             } else {
                 switchTab('home');
             }
         }
 
-        function activateDiscountAndGoToPackages() {
-            freeClassesUnlocked = true;
+        function activateDiscountState() {
+            if (discountActive) return;
+            discountActive = true;
 
-            // Display active promo badges on packages
-            document.getElementById('active-discount-banner').style.display = "block";
-            document.getElementById('badge-flex-free').style.display = "inline-block";
-            document.getElementById('badge-booster-free').style.display = "inline-block";
-            document.getElementById('badge-elite-free').style.display = "inline-block";
+            // Display active promo banners and badges
+            const discountBanner = document.getElementById('active-discount-banner');
+            const badgeFlex = document.getElementById('badge-flex-free');
+            const badgeBooster = document.getElementById('badge-booster-free');
+            const badgeElite = document.getElementById('badge-elite-free');
 
-            // Update registration drop-down options to explicitly confirm the 3 free classes
+            if (discountBanner) discountBanner.style.display = "block";
+            if (badgeFlex) badgeFlex.style.display = "inline-block";
+            if (badgeBooster) badgeBooster.style.display = "inline-block";
+            if (badgeElite) badgeElite.style.display = "inline-block";
+
+            // Update Grand Elite Price displays ($30 Off)
+            const priceEliteGroup = document.getElementById('price-elite-group');
+            const priceElitePrivate = document.getElementById('price-elite-private');
+            if (priceEliteGroup) priceEliteGroup.innerText = "$279.99";
+            if (priceElitePrivate) priceElitePrivate.innerText = "$420.00";
+
+            // Update registration drop-down options to confirm the 3 free classes & $30 off Grand Elite
             const packageSelect = document.getElementById('package-choice');
             if (packageSelect) {
                 packageSelect.options[0].text = "Drop-In Flex (Group: $12/class - 3 FREE CLASSES INCLUDED)";
                 packageSelect.options[1].text = "Summer Booster (Group: $10/class - 3 FREE CLASSES INCLUDED)";
+                packageSelect.options[2].text = "The Grand Elite (Group: $279.99/season - $30 OFF + 3 FREE CLASSES)";
                 packageSelect.options[3].text = "Drop-In Flex (Private: $17/class - 3 FREE CLASSES INCLUDED)";
                 packageSelect.options[4].text = "Summer Booster (Private: $15/class - 3 FREE CLASSES INCLUDED)";
+                packageSelect.options[5].text = "The Grand Elite (Private: $420.00/season - $30 OFF + 3 FREE CLASSES)";
             }
-
-            switchTab('packages');
         }
 
         function switchTab(tabId, packagePreselect) {
@@ -1335,11 +1348,11 @@
                 const packageSelect = document.getElementById('package-choice');
                 if (packageSelect) {
                     if (packagePreselect === 'flex') {
-                        packageSelect.value = freeClassesUnlocked ? "Drop-In Flex (Group: $12/class - 3 FREE CLASSES INCLUDED)" : "Drop-In Flex (Group: $12/class)";
+                        packageSelect.value = discountActive ? "Drop-In Flex (Group: $12/class - 3 FREE CLASSES INCLUDED)" : "Drop-In Flex (Group: $12/class)";
                     } else if (packagePreselect === 'booster') {
-                        packageSelect.value = freeClassesUnlocked ? "Summer Booster (Group: $10/class - 3 FREE CLASSES INCLUDED)" : "Summer Booster (Group: $10/class - MOST POPULAR)";
+                        packageSelect.value = discountActive ? "Summer Booster (Group: $10/class - 3 FREE CLASSES INCLUDED)" : "Summer Booster (Group: $10/class - MOST POPULAR)";
                     } else if (packagePreselect === 'elite') {
-                        packageSelect.value = "The Grand Elite (Group: $309.99/season Unlimited)";
+                        packageSelect.value = discountActive ? "The Grand Elite (Group: $279.99/season - $30 OFF + 3 FREE CLASSES)" : "The Grand Elite (Group: $309.99/season Unlimited)";
                     }
                 }
             }
