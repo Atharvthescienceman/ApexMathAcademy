@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="msvalidate.01" content="5C319DAB5993334158C89FB11020E67B" />
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="google98687e5d364ebc6c" />
     <meta name="description" content="Premium local math tutoring by Atharv Gupta. Apex Math Academy offers flexible group classes and private 1-on-1 math sessions.">
@@ -434,7 +433,7 @@
             text-decoration: line-through;
             color: #94a3b8;
             font-weight: 600;
-            font-size: 0.95rem; /* Less than half the main 2.4rem price */
+            font-size: 0.95rem;
             vertical-align: super;
             margin-right: 0.25rem;
             display: none;
@@ -444,7 +443,7 @@
             text-decoration: line-through;
             color: #94a3b8;
             font-weight: 600;
-            font-size: 0.6rem; /* Less than half the 1.3rem small price */
+            font-size: 0.6rem;
             vertical-align: super;
             margin-right: 0.2rem;
             display: none;
@@ -804,6 +803,175 @@
             margin-bottom: 2rem;
         }
 
+        /* INTEGRATED AI CHATBOT WIDGET STYLING */
+        .ai-chat-launcher {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, #203a70 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            padding: 0.85rem 1.4rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 10px 25px rgba(21, 34, 56, 0.3);
+            cursor: pointer;
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .ai-chat-launcher:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(21, 34, 56, 0.4);
+        }
+
+        .ai-chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 24px;
+            width: 380px;
+            max-width: 90vw;
+            height: 520px;
+            max-height: 75vh;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            border: 1px solid var(--border);
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px) scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+        }
+
+        .ai-chat-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, #152238 0%, #203a70 100%);
+            color: var(--white);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-header-title h4 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 0.15rem;
+            letter-spacing: -0.2px;
+        }
+
+        .ai-chat-header-title p {
+            font-size: 0.78rem;
+            opacity: 0.88;
+            font-weight: 500;
+        }
+
+        .ai-chat-close {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .ai-chat-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            padding: 1.2rem;
+            overflow-y: auto;
+            background-color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-bubble {
+            max-width: 82%;
+            padding: 0.85rem 1.1rem;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .chat-bubble.bot {
+            background-color: var(--white);
+            color: var(--dark);
+            border: 1px solid var(--border);
+            align-self: flex-start;
+            border-bottom-left-radius: 3px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .chat-bubble.user {
+            background-color: var(--primary-light);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 3px;
+        }
+
+        .ai-chat-footer {
+            padding: 0.85rem 1rem;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+        }
+
+        .ai-chat-footer input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .ai-chat-footer input:focus {
+            border-color: var(--primary-light);
+        }
+
+        .ai-chat-send-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .ai-chat-send-btn:hover {
+            background-color: #0f766e;
+        }
+
         footer {
             background-color: var(--primary);
             color: #94a3b8;
@@ -826,6 +994,11 @@
             }
             .clear-btn, .form-actions button[type="submit"] {
                 width: 100%;
+            }
+            .ai-chat-window {
+                right: 5vw;
+                width: 90vw;
+                bottom: 85px;
             }
         }
     </style>
@@ -1287,6 +1460,30 @@
         </div>
     </div>
 
+    <!-- AI CHATBOT FLOATING WIDGET -->
+    <button class="ai-chat-launcher" onclick="toggleAiChat()">
+        💬 Any questions about our website? Ask AI!
+    </button>
+
+    <div id="ai-chat-window" class="ai-chat-window">
+        <div class="ai-chat-header">
+            <div class="ai-chat-header-title">
+                <h4>Apex AI Assistant 🤖</h4>
+                <p>Any questions about our website? Ask AI!</p>
+            </div>
+            <button class="ai-chat-close" onclick="toggleAiChat()">×</button>
+        </div>
+        <div id="ai-chat-body" class="ai-chat-body">
+            <div class="chat-bubble bot">
+                👋 Hello! Welcome to Apex Math Academy. I'm your AI Assistant. Ask me anything about our classes, pricing, tutors, or charity mission!
+            </div>
+        </div>
+        <div class="ai-chat-footer">
+            <input type="text" id="ai-chat-input" placeholder="Type your question here..." onkeypress="handleAiKeyPress(event)">
+            <button class="ai-chat-send-btn" onclick="sendAiMessage()">Send</button>
+        </div>
+    </div>
+
     <footer>
         <p>© 2026 Apex Math Academy. Built to inspire neighborhood learning.</p>
     </footer>
@@ -1439,6 +1636,65 @@
                 trackerInput.value = "Paid Instructor ($12/hr)";
                 expLabel.innerText = "Do you have previous experience teaching, mentoring, or volunteering with kids?";
                 submitBtn.style.backgroundColor = "var(--secondary)";
+            }
+        }
+
+        // --- AI CHATBOT INTERACTIVE LOGIC ---
+        function toggleAiChat() {
+            const chatWin = document.getElementById('ai-chat-window');
+            chatWin.classList.toggle('active');
+        }
+
+        function handleAiKeyPress(event) {
+            if (event.key === 'Enter') sendAiMessage();
+        }
+
+        function sendAiMessage() {
+            const input = document.getElementById('ai-chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatBody = document.getElementById('ai-chat-body');
+
+            // Append User Message
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-bubble user';
+            userBubble.innerText = message;
+            chatBody.appendChild(userBubble);
+
+            input.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Generate AI Response based on website Knowledge Base
+            setTimeout(() => {
+                const reply = generateAiKnowledgeResponse(message);
+                const botBubble = document.createElement('div');
+                botBubble.className = 'chat-bubble bot';
+                botBubble.innerHTML = reply;
+                chatBody.appendChild(botBubble);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 600);
+        }
+
+        function generateAiKnowledgeResponse(q) {
+            const lower = q.toLowerCase();
+
+            if (lower.includes('price') || lower.includes('cost') || lower.includes('package') || lower.includes('fee') || lower.includes('rate')) {
+                return "We offer 3 flexible plans:<br>• <strong>Drop-In Flex:</strong> $12/group or $17/private session.<br>• <strong>Summer Booster:</strong> $10/group or $15/private session.<br>• <strong>The Grand Elite:</strong> $309.99/group or $450/private (Unlimited classes full season!).<br><br>👉 Click <strong>Packages</strong> in the top menu to sign up!";
+            } else if (lower.includes('tutor') || lower.includes('teacher') || lower.includes('atharv') || lower.includes('who')) {
+                return "Our founder and lead instructor is <strong>Atharv Gupta</strong>, a high school honors student specializing in Algebra, Pre-Algebra, and competition math. He leads with peer-level communication that builds solid confidence!";
+            } else if (lower.includes('grade') || lower.includes('level') || lower.includes('subject') || lower.includes('topic') || lower.includes('math')) {
+                return "We tutor students in <strong>Elementary, Middle School (Grades 6-8), and Freshman High School (Grade 9)</strong>. Topics range from foundational math and Pre-Algebra to Algebra I and Competition Math. You can view our full syllabus on the site!";
+            } else if (lower.includes('charity') || lower.includes('donate') || lower.includes('mission') || lower.includes('percent')) {
+                return "❤️ Apex Math Academy is mission-driven: <strong>40% of all tutoring profits</strong> are donated directly to local charities and educational support networks for children in need!";
+            } else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('call') || lower.includes('text')) {
+                return "You can call or text us anytime at <strong>(732) 496-5250</strong> or email <strong>atharvthescienceman@gmail.com</strong>. You can also send us a direct message under the <strong>Contact Us</strong> tab!";
+            } else if (lower.includes('secret') || lower.includes('promo') || lower.includes('discount') || lower.includes('free')) {
+                return "💡 <em>Psst...</em> If you're looking for an extra reward, try clicking on our 📐 <strong>Apex Math Academy logo</strong> at the top of the page!";
+            } else if (lower.includes('job') || lower.includes('work') || lower.includes('volunteer') || lower.includes('apply') || lower.includes('hire')) {
+                return "We're hiring instructors ($12/hr) and volunteer tutors (earning certified NHS service hours)! Head over to the <strong>Join Team</strong> tab to apply.";
+            } else {
+                return "Great question! Apex Math Academy provides high-energy peer math tutoring with flexible group or private sessions. Feel free to check out our <strong>Packages</strong> or fill out a form under <strong>Sign Up</strong> or <strong>Contact Us</strong>!";
             }
         }
 
