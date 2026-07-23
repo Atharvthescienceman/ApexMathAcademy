@@ -428,12 +428,14 @@
             margin-top: 0.25rem;
         }
 
-        /* Strikethrough Pricing Styles */
+        /* Top-Left Superscript Strikethrough Pricing Styles */
         .old-price {
             text-decoration: line-through;
             color: #94a3b8;
             font-weight: 600;
-            margin-right: 0.4rem;
+            font-size: 0.95rem; /* Less than half the main 2.4rem price */
+            vertical-align: super;
+            margin-right: 0.25rem;
             display: none;
         }
 
@@ -441,8 +443,9 @@
             text-decoration: line-through;
             color: #94a3b8;
             font-weight: 600;
-            font-size: 1rem;
-            margin-right: 0.3rem;
+            font-size: 0.6rem; /* Less than half the 1.3rem small price */
+            vertical-align: super;
+            margin-right: 0.2rem;
             display: none;
         }
 
