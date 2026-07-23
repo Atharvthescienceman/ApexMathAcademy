@@ -428,6 +428,24 @@
             margin-top: 0.25rem;
         }
 
+        /* Strikethrough Pricing Styles */
+        .old-price {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-right: 0.4rem;
+            display: none;
+        }
+
+        .old-price-small {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-right: 0.3rem;
+            display: none;
+        }
+
         .promo-discount-badge {
             background-color: #dcfce7;
             color: #15803d;
@@ -955,11 +973,11 @@
             <div class="card elite-value">
                 <div>
                     <span style="background:var(--accent); color:white; padding:0.3rem 0.85rem; border-radius:20px; font-size:0.75rem; font-weight:800; letter-spacing:0.5px;">BEST VALUE DEAL</span>
-                    <div id="badge-elite-free" style="display:none; margin-top:0.5rem;" class="promo-discount-badge">$30 OFF APPLIED</div>
+                    <div id="badge-elite-free" style="display:none; margin-top:0.5rem;" class="promo-discount-badge">🎁 $30 OFF APPLIED</div>
                     <h3 style="margin-top:0.5rem;">The Grand Elite</h3>
                     <div class="price-tag">
-                        <span id="price-elite-group">$309.99</span><span class="price-sub">Group / full season</span>
-                        <span style="font-size:1.3rem; color:#b45309; font-weight:800; display:block; margin-top:0.5rem;"><span id="price-elite-private">$450.00</span><span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
+                        <span id="old-price-elite-group" class="old-price">$309.99</span><span id="price-elite-group">$309.99</span><span class="price-sub">Group / full season</span>
+                        <span style="font-size:1.3rem; color:#b45309; font-weight:800; display:block; margin-top:0.5rem;"><span id="old-price-elite-private" class="old-price-small">$450.00</span><span id="price-elite-private">$450.00</span><span class="price-sub" style="display:inline;"> Private 1-on-1 Full Season</span></span>
                     </div>
                     <div class="savings-badge">
                         💡 Save hundreds in value! Taking classes daily earns massive profit advantages compared to standard weekly plans.
@@ -1304,9 +1322,15 @@
             if (badgeBooster) badgeBooster.style.display = "inline-block";
             if (badgeElite) badgeElite.style.display = "inline-block";
 
-            // Update Grand Elite Price displays ($30 Off)
+            // Show Strikethrough Original Prices and Update Discounted Display
+            const oldPriceEliteGroup = document.getElementById('old-price-elite-group');
+            const oldPriceElitePrivate = document.getElementById('old-price-elite-private');
             const priceEliteGroup = document.getElementById('price-elite-group');
             const priceElitePrivate = document.getElementById('price-elite-private');
+
+            if (oldPriceEliteGroup) oldPriceEliteGroup.style.display = "inline";
+            if (oldPriceElitePrivate) oldPriceElitePrivate.style.display = "inline";
+
             if (priceEliteGroup) priceEliteGroup.innerText = "$279.99";
             if (priceElitePrivate) priceElitePrivate.innerText = "$420.00";
 
