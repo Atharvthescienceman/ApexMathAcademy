@@ -1682,33 +1682,51 @@
         }
 
         function processApexAiQuery(q) {
-            const lower = q.toLowerCase();
+    const lower = q.toLowerCase();
 
-            if (lower.includes('price') || lower.includes('cost') || lower.includes('package') || lower.includes('fee') || lower.includes('rate') || lower.includes('how much')) {
-                return "We offer 3 flexible pricing plans:<br>• <strong>Drop-In Flex:</strong> $12/group class or $17/private session.<br>• <strong>Summer Booster:</strong> $10/group class or $15/private session.<br>• <strong>The Grand Elite:</strong> $309.99/group or $450/private (Unlimited classes all season long!).<br><br>👉 You can view all options under our <strong>Packages</strong> tab!";
-            } 
-            else if (lower.includes('tutor') || lower.includes('teacher') || lower.includes('atharv') || lower.includes('who')) {
-                return "Our founder and lead instructor is <strong>Atharv Gupta</strong>, a high school honors student mastering advanced mathematics tracks. He is an active NJHS leader, chess strategist, and flute musician who builds student confidence through relatable, high-energy instruction!";
-            } 
-            else if (lower.includes('grade') || lower.includes('level') || lower.includes('subject') || lower.includes('topic') || lower.includes('algebra') || lower.includes('math')) {
-                return "We specialize in <strong>Elementary, Middle School (Grades 6-8), and High School Freshman (Grade 9)</strong> math! Subjects include Foundational Math, Pre-Algebra, Algebra I, and Competition Math. Check out our syllabus page for grade breakdowns!";
-            } 
-            else if (lower.includes('charity') || lower.includes('donate') || lower.includes('mission') || lower.includes('percent')) {
-                return "❤️ Apex Math Academy donates <strong>40% of all tutoring profits</strong> directly to local neighborhood charities and educational support networks for children in need!";
-            } 
-            else if (lower.includes('secret') || lower.includes('promo') || lower.includes('discount') || lower.includes('free') || lower.includes('deal')) {
-                return "🎁 <em>Easter Egg Unlocked!</em> Click directly on our 📐 <strong>Apex Math Academy logo</strong> at the top of the page to reveal <strong>3 Free Classes</strong> and <strong>$30 Off The Grand Elite</strong>!";
-            } 
-            else if (lower.includes('job') || lower.includes('work') || lower.includes('volunteer') || lower.includes('apply') || lower.includes('team')) {
-                return "We're hiring instructors ($12/hr) and volunteer tutors (earning certified NHS/NJHS community service hours)! Head over to the <strong>Join Team</strong> tab to submit an application.";
-            } 
-            else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('call') || lower.includes('text')) {
-                return "Feel free to call/text us anytime at <strong>(732) 496-5250</strong> or email <strong>atharvthescienceman@gmail.com</strong>. You can also send a direct query under <strong>Contact Us</strong>!";
-            } 
-            else {
-                return "Hello! I am the official AI Assistant for Apex Math Academy. You can ask me about our <strong>pricing packages</strong>, <strong>tutor background</strong>, <strong>math subjects (K-9)</strong>, or our <strong>40% charity pledge</strong>!";
-            }
+    // 1. DYNAMIC MATH EVALUATOR (Solves arithmetic like 2+2, 15*4, 100/5, 3^2, etc.)
+    // Strips out words and checks if the prompt contains a basic math expression
+    const mathExpression = q.replace(/[^0-9+\-*/().^]/g, '');
+    if (mathExpression.length > 0 && /[0-9]/.test(mathExpression) && /[+\-*/^]/.test(mathExpression)) {
+        try {
+            // Safe evaluation for basic math expressions
+            let sanitizedExpr = mathExpression.replace(/\^/g, '**'); // Handle exponentiation
+            let result = Function(`'use strict'; return (${sanitizedExpr})`)();
+            return `🧮 <strong>Math Calculation:</strong><br>${mathExpression} = <strong>${result}</strong>`;
+        } catch (e) {
+            // If math parsing fails, continue to text handlers
         }
+    }
+
+    // 2. WEBSITE KNOWLEDGE BASE
+    if (lower.includes('price') || lower.includes('cost') || lower.includes('package') || lower.includes('fee') || lower.includes('rate') || lower.includes('how much')) {
+        return "We offer 3 flexible pricing plans:<br>• <strong>Drop-In Flex:</strong> $12/group class or $17/private session.<br>• <strong>Summer Booster:</strong> $10/group class or $15/private session.<br>• <strong>The Grand Elite:</strong> $309.99/group or $450/private (Unlimited classes all season long!).<br><br>👉 You can view all options under our <strong>Packages</strong> tab!";
+    } 
+    else if (lower.includes('tutor') || lower.includes('teacher') || lower.includes('atharv') || lower.includes('who')) {
+        return "Our founder and lead instructor is <strong>Atharv Gupta</strong>, a high school honors student mastering advanced mathematics tracks. He is an active NJHS leader, chess strategist, and flute musician who builds student confidence through relatable, high-energy instruction!";
+    } 
+    else if (lower.includes('grade') || lower.includes('level') || lower.includes('subject') || lower.includes('topic') || lower.includes('algebra') || lower.includes('math')) {
+        return "We specialize in <strong>Elementary, Middle School (Grades 6-8), and High School Freshman (Grade 9)</strong> math! Subjects include Foundational Math, Pre-Algebra, Algebra I, and Competition Math. Check out our syllabus page for grade breakdowns!";
+    } 
+    else if (lower.includes('charity') || lower.includes('donate') || lower.includes('mission') || lower.includes('percent')) {
+        return "❤️ Apex Math Academy donates <strong>40% of all tutoring profits</strong> directly to local neighborhood charities and educational support networks for children in need!";
+    } 
+    else if (lower.includes('secret') || lower.includes('promo') || lower.includes('discount') || lower.includes('free') || lower.includes('deal')) {
+        return "🎁 <em>Easter Egg Unlocked!</em> Click directly on our 📐 <strong>Apex Math Academy logo</strong> at the top of the page to reveal <strong>3 Free Classes</strong> and <strong>$30 Off The Grand Elite</strong>!";
+    } 
+    else if (lower.includes('job') || lower.includes('work') || lower.includes('volunteer') || lower.includes('apply') || lower.includes('team')) {
+        return "We're hiring instructors ($12/hr) and volunteer tutors (earning certified NHS/NJHS community service hours)! Head over to the <strong>Join Team</strong> tab to submit an application.";
+    } 
+    else if (lower.includes('contact') || lower.includes('phone') || lower.includes('email') || lower.includes('call') || lower.includes('text')) {
+        return "Feel free to call/text us anytime at <strong>(732) 496-5250</strong> or email <strong>atharvthescienceman@gmail.com</strong>. You can also send a direct query under <strong>Contact Us</strong>!";
+    } 
+    else if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey')) {
+        return "Hello there! 👋 I am the official AI Assistant for Apex Math Academy. You can ask me about our <strong>pricing packages</strong>, <strong>math subjects (K-9)</strong>, or ask me to solve any <strong>math calculation</strong>!";
+    }
+    else {
+        return "I can answer questions about Apex Math Academy's <strong>classes, pricing, and tutors</strong>, or help evaluate math expressions (like <code>2+2</code> or <code>15*4</code>)! What would you like to know?";
+    }
+}
 
         // --- AUTOMATIC FORM DRAFT SAVER, RESTORER & CLEARING ---
         function enableAutoSave(formId, storageKey) {
